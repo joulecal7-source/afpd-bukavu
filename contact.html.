@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - AFPD Bukavu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary: #2c7a7b; }
+        .contact-header { background: var(--primary); color: white; padding: 60px 0; text-align: center; }
+        .contact-card { border: none; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: 0.3s; }
+        .contact-card:hover { transform: translateY(-5px); }
+        .icon-box { font-size: 2rem; color: var(--primary); margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="index.html">AFPD BUKAVU</a>
+        <div class="ms-auto">
+            <a href="index.html" class="btn btn-outline-primary btn-sm">Retour à l'accueil</a>
+        </div>
+    </div>
+</nav>
+
+<header class="contact-header">
+    <div class="container">
+        <h1 class="fw-bold">Nous Contacter</h1>
+        <p class="lead">Une question ? Un projet de parrainage ? Écrivez-nous.</p>
+    </div>
+</header>
+
+<section class="container my-5 py-4">
+    <div class="row g-4 text-center">
+        <div class="col-md-4">
+            <div class="card contact-card p-4 h-100">
+                <div class="icon-box"><i class="fas fa-phone-alt"></i></div>
+                <h4 class="fw-bold">Téléphones</h4>
+                <p class="mb-1">+243 998 440 006</p>
+                <p class="mb-1">+243 826 452 372</p>
+                <p>+243 855 000 084</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card contact-card p-4 h-100">
+                <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                <h4 class="fw-bold">Email</h4>
+                <p>afpdcongo@gmail.com</p>
+                <a href="mailto:afpdcongo@gmail.com" class="btn btn-primary btn-sm">Nous écrire</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card contact-card p-4 h-100">
+                <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
+                <h4 class="fw-bold">Adresse</h4>
+                <p>N°3 Avenue Ruzizi, Quartier Nyalukemba<br>Commune d'Ibanda, Bukavu, RDC</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5 pt-5 text-center">
+        <h3 class="fw-bold mb-4">Suivez-nous & Partagez</h3>
+        <div class="col-12">
+            <a href="https://wa.me/243998440006" class="btn btn-success m-2 px-4 shadow"><i class="fab fa-whatsapp me-2"></i>WhatsApp</a>
+            <a href="#" class="btn btn-primary m-2 px-4 shadow"><i class="fab fa-facebook me-2"></i>Facebook</a>
+            <a href="#" class="btn btn-dark m-2 px-4 shadow"><i class="fab fa-tiktok me-2"></i>TikTok</a>
+        </div>
+    </div>
+</section>
+
+<footer class="text-center py-4 bg-light">
+    <p class="text-muted small">Action de Femmes pour la Paix et le Développement - Bukavu</p>
+</footer>
+
+</body>
+</html>
