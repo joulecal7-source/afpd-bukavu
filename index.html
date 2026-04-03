@@ -3,152 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AFPD - Action de Femmes pour la Paix et le Développement</title>
+    <title>AFPD - Orphelinat Bukavu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --primary-color: #2c7a7b; --secondary-color: #f8f9fa; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; }
+        :root { --primary: #2c7a7b; }
+        body { font-family: 'Poppins', sans-serif; }
         .hero { 
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1350&q=80'); 
-            height: 85vh; background-size: cover; background-position: center; color: white; 
+            height: 70vh; background-size: cover; background-position: center; color: white; 
             display: flex; align-items: center; justify-content: center; text-align: center; 
         }
-        .navbar-brand { font-weight: 800; color: var(--primary-color) !important; }
-        .btn-primary { background-color: var(--primary-color); border: none; padding: 12px 30px; border-radius: 50px; font-weight: 600; }
-        .section-padding { padding: 80px 0; }
-        .card-mission { border: none; border-radius: 15px; transition: transform 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .card-mission:hover { transform: translateY(-10px); }
-        .quote { font-style: italic; border-left: 5px solid var(--primary-color); padding-left: 20px; margin: 30px 0; font-size: 1.2rem; }
-        .highlight-box { background-color: #e6fffa; border-radius: 20px; padding: 40px; }
+        .btn-whatsapp-float { 
+            position: fixed; bottom: 20px; right: 20px; background-color: #25d366; 
+            color: white; border-radius: 50px; padding: 12px 20px; z-index: 1000; 
+            text-decoration: none; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm sticky-top">
+<a href="https://wa.me/243998440006" class="btn-whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i> WhatsApp
+</a>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
     <div class="container">
-        <a class="navbar-brand" href="#">AFPD BUKAVU</a>
+        <a class="navbar-brand fw-bold text-primary" href="index.html">AFPD BUKAVU</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#about">Notre Histoire</a></li>
-                <li class="nav-item"><a class="nav-link" href="#missions">Nos Actions</a></li>
-                <li class="nav-item"><a class="nav-link" href="#support">Comment Aider</a></li>
-                <li class="nav-item"><a class="nav-link btn btn-primary text-white ms-lg-4" href="#support">Soutenir l'AFPD</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="enfants.html">Nos Enfants</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
 <header class="hero">
-    <div class="container">
-        <span class="badge bg-success mb-3 px-3 py-2">Bukavu, République Démocratique du Congo</span>
-        <h1 class="display-3 fw-bold mb-4">Redonner un avenir aux enfants de Bukavu</h1>
-        <p class="lead mb-5 px-md-5">L'Action de Femmes pour la Paix et le Développement (AFPD) transforme la vie des orphelins en leur offrant protection, amour et éducation.</p>
-        <a href="#support" class="btn btn-primary btn-lg">Faire un geste aujourd'hui</a>
+    <div class="container text-center">
+        <h1 class="display-3 fw-bold">Action de Femmes pour la Paix et le Développement</h1>
+        <p class="lead italic">"La vie d'un enfant vaut plus que tout l'or du monde"</p>
+        <a href="contact.html" class="btn btn-warning btn-lg mt-3 fw-bold">Soutenir l'AFPD</a>
     </div>
 </header>
 
-<section id="about" class="section-padding">
-    <div class="container">
-        <div class="row align-items: center;">
-            <div class="col-lg-6 mb-4">
-                <h2 class="fw-bold mb-4">Plus qu'un orphelinat, une famille.</h2>
-                <p>L’AFPD est une organisation à but non lucratif qui se consacre au bien-être des enfants les plus vulnérables en RDC. Face aux ravages de la guerre civile et de la maladie, nous intervenons là où l'espoir semble perdu.</p>
-                <div class="quote">
-                    "Leur seul recours est l'AFPD. Les proches n'ayant plus les moyens de les accueillir, nous devenons leur refuge et leur tremplin vers l'avenir."
-                </div>
-                <p>Nous veillons à ce que chaque enfant dispose d'un **abri sûr**, de **vêtements**, d'une **nutrition équilibrée** et d'un accès prioritaire à la **santé** et à la **scolarité**.</p>
-            </div>
-            <div class="col-lg-6">
-                <div class="highlight-box">
-                    <h3 class="fw-bold text-center mb-4">Notre Impact Actuel</h3>
-                    <div class="row text-center">
-                        <div class="col-6 mb-3">
-                            <h2 class="display-4 fw-bold text-success">25</h2>
-                            <p class="text-muted">Orphelins protégés</p>
-                        </div>
-                        <div class="col-6 mb-3">
-                            <h2 class="display-4 fw-bold text-success">1 à 14</h2>
-                            <p class="text-muted">Âge des enfants</p>
-                        </div>
-                        <div class="col-6">
-                            <h2 class="display-4 fw-bold text-primary">15</h2>
-                            <p class="text-muted">Filles</p>
-                        </div>
-                        <div class="col-6">
-                            <h2 class="display-4 fw-bold text-primary">10</h2>
-                            <p class="text-muted">Garçons</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<section class="container py-5 text-center">
+    <h2 class="fw-bold mb-4">Notre Mission à Bukavu</h2>
+    <p class="px-md-5">L’AFPD prend soin de 25 orphelins (10 garçons et 15 filles) de 1 à 14 ans, en leur offrant nourriture, éducation et soins médicaux pour un avenir meilleur.</p>
+    <div class="row mt-5">
+        <div class="col-md-4 mb-3">
+            <i class="fas fa-graduation-cap fa-3x text-primary mb-3"></i>
+            <h4>Éducation</h4>
+        </div>
+        <div class="col-md-4 mb-3">
+            <i class="fas fa-heartbeat fa-3x text-primary mb-3"></i>
+            <h4>Santé</h4>
+        </div>
+        <div class="col-md-4 mb-3">
+            <i class="fas fa-users fa-3x text-primary mb-3"></i>
+            <h4>Soutien Social</h4>
         </div>
     </div>
 </section>
 
-<section id="missions" class="section-padding bg-light">
-    <div class="container text-center">
-        <h2 class="fw-bold mb-2">Nos Trois Piliers d'Action</h2>
-        <p class="text-muted mb-5">Une approche holistique pour préparer les enfants à une vie autonome et productive.</p>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card card-mission h-100 p-4">
-                    <div class="h1 mb-3">🎓</div>
-                    <h4 class="fw-bold">Éducation de Qualité</h4>
-                    <p>Nous croyons que l'instruction est la clé de l'insertion sociale. Nous finançons la scolarité pour maximiser leurs chances de réussite et de dignité future.</p>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card card-mission h-100 p-4 border-primary shadow">
-                    <div class="h1 mb-3">❤️</div>
-                    <h4 class="fw-bold">Soutien Psycho-Social</h4>
-                    <p>Traumatisés par leur passé, les enfants bénéficient de séances de sport et d'activités de groupe, épaulés par des conseillers psychologiques spécialisés.</p>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card card-mission h-100 p-4">
-                    <div class="h1 mb-3">🏥</div>
-                    <h4 class="fw-bold">Santé & Bien-être</h4>
-                    <p>Un accès garanti à des services médicaux rapides. Parce que la santé d'un enfant est le socle sur lequel il construit ses rêves.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="support" class="section-padding">
-    <div class="container text-center">
-        <h2 class="fw-bold mb-4">Votre générosité est leur force</h2>
-        <p class="lead mb-5 italic">“La vie d’un enfant vaut plus que tout l’or du monde”</p>
-        
-        <div class="row justify-content-center">
-            <div class="col-md-5 mb-4">
-                <div class="p-5 border rounded-4 shadow-sm h-100">
-                    <h4 class="fw-bold text-primary mb-3">Parrainage d'Enfants</h4>
-                    <p>Établissez un lien durable. En devenant parrain, vous assurez un soutien continu qui transforme radicalement les conditions de vie d'un enfant spécifique.</p>
-                    <a href="mailto:votremail@exemple.com" class="btn btn-outline-primary mt-3">Devenir Parrain</a>
-                </div>
-            </div>
-            <div class="col-md-5 mb-4">
-                <div class="p-5 border rounded-4 shadow-sm h-100">
-                    <h4 class="fw-bold text-success mb-3">Don Financier Libre</h4>
-                    <p>Chaque don, même petit, permet d'acheter de la nourriture, des vêtements et des fournitures scolaires. Votre apport est une œuvre sociale essentielle.</p>
-                    <a href="#" class="btn btn-success mt-3">Faire un Don</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<footer class="bg-dark text-white py-5">
-    <div class="container text-center">
-        <h4 class="fw-bold mb-3">AFPD - Bukavu</h4>
-        <p class="text-muted">Organisation à but non lucratif œuvrant pour les enfants de la RDC.</p>
-        <hr class="w-25 mx-auto my-4 border-secondary">
-        <p class="small mb-0">© 2026 Action de Femmes pour la Paix et le Développement. Tous droits réservés.</p>
-    </div>
+<footer class="bg-dark text-white text-center py-4">
+    <p>© 2026 AFPD Bukavu - Commune d'Ibanda, RDC</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
