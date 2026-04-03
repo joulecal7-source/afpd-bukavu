@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie - AFPD Bukavu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary: #2c7a7b; }
+        .gallery-img { width: 100%; height: 250px; object-fit: cover; border-radius: 15px; margin-bottom: 20px; transition: 0.3s; }
+        .gallery-img:hover { transform: scale(1.03); cursor: pointer; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; background: #000; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="index.html">AFPD BUKAVU</a>
+        <a href="index.html" class="btn btn-outline-primary btn-sm">Retour Accueil</a>
+    </div>
+</nav>
+
+<div class="container my-5">
+    <h1 class="fw-bold text-center mb-5">Galerie Photos & Vidéos</h1>
+
+    <div class="row">
+        <div class="col-12 mb-5">
+            <h3 class="fw-bold mb-3"><i class="fas fa-video text-danger me-2"></i> Nos Vidéos</h3>
+            <div class="video-container shadow">
+                <div class="d-flex align-items-center justify-content-center h-100 text-white p-4 text-center">
+                    <p>Bientôt : Les vidéos des activités de l'orphelinat à Bukavu.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="fw-bold mb-4"><i class="fas fa-camera text-primary me-2"></i> Moments de Vie</h3>
+        
+        <div class="col-md-4">
+            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80" class="gallery-img shadow-sm" alt="Éducation">
+            <p class="text-center small text-muted">Scolarisation des enfants</p>
+        </div>
+        <div class="col-md-4">
+            <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=600&q=80" class="gallery-img shadow-sm" alt="Sourire">
+            <p class="text-center small text-muted">Moments de joie</p>
+        </div>
+        <div class="col-md-4">
+            <img src="https://images.unsplash.com/photo-1540609651531-19d2ba948c25?auto=format&fit=crop&w=600&q=80" class="gallery-img shadow-sm" alt="Vie quotidienne">
+            <p class="text-center small text-muted">Activités quotidiennes</p>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-light py-4 text-center mt-5">
+    <p class="mb-0 text-muted">AFPD - Bukavu, Sud-Kivu, RDC</p>
+</footer>
+
+</body>
+</html>
