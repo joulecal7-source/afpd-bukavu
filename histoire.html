@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --primary: #2c7a7b; --secondary: #f6ad55; }
-        body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; }
-        .header-section { background: var(--primary); color: white; padding: 60px 0; text-align: center; }
-        .content-box { background: white; padding: 40px; border-radius: 15px; shadow: 0 4px 10px rgba(0,0,0,0.1); margin-top: -30px; }
+        body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; color: #333; line-height: 1.6; }
+        .nav-btn-blue { background-color: #007bff !important; color: white !important; border-radius: 20px; padding: 8px 20px !important; font-weight: bold; }
+        .header-story { background: linear-gradient(rgba(44, 122, 122, 0.9), rgba(44, 122, 122, 0.9)), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1350&q=80'); background-size: cover; color: white; padding: 80px 0; text-align: center; }
+        .story-card { background: white; border-radius: 15px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-top: -50px; position: relative; z-index: 10; }
+        .quote { font-style: italic; color: var(--primary); border-left: 4px solid var(--secondary); padding-left: 20px; margin: 30px 0; font-size: 1.2rem; }
+        .highlight { color: #d9534f; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -18,33 +21,43 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
     <div class="container">
         <a class="navbar-brand fw-bold text-primary" href="index.html">AFPD BUKAVU</a>
-        <div class="ms-auto"><a class="btn btn-primary rounded-pill px-4" href="index.html">Accueil</a></div>
+        <div class="ms-auto"><a class="nav-link nav-btn-blue d-inline-block" href="index.html">Retour à l'Accueil</a></div>
     </div>
 </nav>
 
-<header class="header-section">
+<header class="header-story">
     <div class="container">
-        <h1>Notre Histoire & Résilience</h1>
+        <h1 class="display-4 fw-bold">Le Cœur d'une Mère, le Combat d'une Vie</h1>
+        <p class="lead">L'histoire de Sifa Matchara Immaculée et de l'AFPD</p>
     </div>
 </header>
 
 <section class="container mb-5">
-    <div class="content-box shadow">
-        <h3 class="text-primary fw-bold">Un engagement malgré la guerre</h3>
-        <p>L'AFPD est née de la volonté de protéger les plus vulnérables à Bukavu. Depuis mars 2025, notre mission a pris un tournant héroïque. Lors des pillages qui ont frappé la ville, nos bienfaiteurs locaux ont tout perdu. Alors que de grandes structures ont choisi de déplacer leurs orphelinats au Rwanda, l'AFPD est restée à Ibanda.</p>
-        
-        <div class="alert alert-warning border-0 shadow-sm">
-            <strong>"Nous ne pouvions pas abandonner nos enfants."</strong><br>
-            Faute de moyens pour fuir, Sifa Matchara Immaculée et son équipe ont choisi de rester pour protéger les 30 orphelins, malgré la famine et l'instabilité causée par le mouvement M23.
+    <div class="story-card">
+        <h2 class="text-primary mb-4 border-bottom pb-2">Un Héritage d'Amour</h2>
+        <p>L’histoire de l’AFPD est avant tout celle d’un héritage de générosité. Sa fondatrice, <strong>Sifa Matchara Immaculée</strong>, a grandi dans une famille nombreuse où le partage était la règle d'or. Marquée par l'exemple de sa propre mère — surnommée « la maman de plusieurs » pour son accueil inconditionnel — Sifa a très tôt compris que sa mission serait de sauver les âmes en détresse.</p>
+
+        <p>De ses débuts comme chantre engagée à son succès dans le monde des affaires, Sifa a toujours utilisé ses ressources pour les plus vulnérables. Qu'il s'agisse de soigner des jumeaux gravement brûlés, de soutenir des prisonniers ou d'offrir une maison à une mère de quadruplés sans ressources, chaque action était guidée par une passion intacte pour l'humain.</p>
+
+        <div class="quote">
+            "La vie d'un enfant vaut mieux que tout l'or du monde."
         </div>
 
-        <h4 class="mt-4 text-primary">Notre situation aujourd'hui</h4>
-        <p>Aujourd'hui, nous luttons quotidiennement pour nourrir nos 30 protégés (âgés de 1 à 17 ans). Le calme est fragile, mais la famine est réelle. Notre histoire est celle d'une survie collective.</p>
+        <h2 class="text-primary mb-4 border-bottom pb-2">La Fondation (2018)</h2>
+        <p>En 2018, Sifa décide de structurer son action en s'intéressant aux enfants de la rue à Bukavu. Elle découvre des orphelins sans aucun recours. Aujourd'hui, l'AFPD accueille directement <strong>30 enfants</strong> (filles et garçons de 1 mois à 17 ans) et soutient <strong>75 autres enfants</strong> en familles d'accueil.</p>
+
+        <h2 class="text-danger mb-4 border-bottom pb-2">La Résilience face à la Guerre (2025-2026)</h2>
+        <p>L’année 2025 a marqué un tournant tragique. Le conflit entre le gouvernement et le mouvement M23 a dévasté l'économie locale. Un moment de rupture totale s'est produit <span class="highlight">lors du retrait des soldats gouvernementaux</span> des villes de Bukavu et Goma.</p>
+        
+        <p>En quittant les lieux, les troupes gouvernementales ont emporté avec elles les fonds des banques locales, vidant ainsi les économies de la population. Ce geste a ruiné nos bienfaiteurs — commerçants et hommes de bonne volonté — qui finançaient l'orphelinat à 70 %. </p>
+
+        <p>Aujourd'hui, alors que les grandes organisations se sont repliées vers le Rwanda, l'AFPD a choisi de <strong>rester à Ibanda</strong>. Faute de moyens pour fuir avec nos 30 enfants, nous affrontons la famine quotidienne. Nous sommes restés pour être leur seul rempart, car pour ces enfants, nous sommes leur seule famille.</p>
     </div>
 </section>
 
 <footer class="bg-dark text-white text-center py-4">
     <p>© 2026 AFPD Bukavu - Commune d'Ibanda, RDC</p>
 </footer>
+
 </body>
 </html>
