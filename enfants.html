@@ -7,88 +7,54 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root { --primary: #2c7a7b; }
-        .header-kids { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1514369118554-e20d93546b30?auto=format&fit=crop&w=1350&q=80'); 
-                       height: 40vh; background-size: cover; background-position: center; color: white; display: flex; align-items: center; justify-content: center; text-align: center; }
-        .kid-card { border: none; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .badge-boy { background-color: #2b6cb0; }
-        .badge-girl { background-color: #d53f8c; }
+        body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; }
+        .hero-kids { background: #2c7a7b; color: white; padding: 50px 0; text-align: center; }
+        .stat-card { background: white; border-radius: 15px; padding: 30px; border-top: 5px solid #f6ad55; text-align: center; }
     </style>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-    <div class="container">
-        <a class="navbar-brand fw-bold text-primary" href="index.html">AFPD BUKAVU</a>
-        <a href="index.html" class="btn btn-outline-primary btn-sm">Retour Accueil</a>
-    </div>
+    <div class="container"><a class="navbar-brand fw-bold text-primary" href="index.html">AFPD BUKAVU</a></div>
 </nav>
 
-<header class="header-kids">
+<header class="hero-kids">
     <div class="container">
-        <h1 class="display-4 fw-bold">Nos 25 Protégés</h1>
-        <p class="lead">Découvrez les visages de l'espoir à Bukavu</p>
+        <h1>Nos 30 Protégés</h1>
+        <p>Ils sont l'avenir de Bukavu, nous sommes leur seul rempart.</p>
     </div>
 </header>
 
-<section class="container my-5">
-    <div class="row text-center mb-5">
-        <div class="col-md-6 mb-3">
-            <div class="p-4 bg-light rounded-4">
-                <h2 class="fw-bold text-primary">15</h2>
-                <p>Filles courageuses</p>
+<section class="container py-5">
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-4">
+            <div class="stat-card shadow-sm">
+                <h2 class="display-4 fw-bold text-primary">30</h2>
+                <p class="text-muted">Enfants orphelins pris en charge</p>
             </div>
         </div>
-        <div class="col-md-6 mb-3">
-            <div class="p-4 bg-light rounded-4">
-                <h2 class="fw-bold text-primary">10</h2>
-                <p>Garçons pleins d'avenir</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <div class="alert alert-info text-center p-4 rounded-4">
-                <h4 class="fw-bold">Le saviez-vous ?</h4>
-                <p>Nos enfants sont âgés de 1 à 14 ans. Ils ont perdu leurs parents à cause de la guerre civile ou de la maladie. L'AFPD est désormais leur seule famille.</p>
-                <a href="https://wa.me/243998440006" class="btn btn-success fw-bold">Devenir Parrain</a>
+        <div class="col-md-4">
+            <div class="stat-card shadow-sm">
+                <h2 class="display-4 fw-bold text-primary">1 à 17</h2>
+                <p class="text-muted">Tranche d'âge des enfants</p>
             </div>
         </div>
     </div>
 
-    <div class="row mt-5">
-        <h3 class="text-center fw-bold mb-4">Besoin d'un parrain</h3>
-        <p class="text-center text-muted mb-5 italic">"Le parrainage permet de financer l'école, les repas et les soins médicaux de manière durable."</p>
-        
-        <div class="col-md-4 mb-4 text-center">
-            <div class="p-4 border rounded-4 shadow-sm">
-                <p class="fs-1">👫</p>
-                <h5 class="fw-bold">Petite Enfance</h5>
-                <p class="small">Enfants de 1 à 5 ans nécessitant des soins nutritionnels spécifiques.</p>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4 text-center">
-            <div class="p-4 border rounded-4 shadow-sm">
-                <p class="fs-1">📚</p>
-                <h5 class="fw-bold">Âge Scolaire</h5>
-                <p class="small">Enfants en école primaire ayant besoin de fournitures et uniformes.</p>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4 text-center">
-            <div class="p-4 border rounded-4 shadow-sm">
-                <p class="fs-1">⚽</p>
-                <h5 class="fw-bold">Adolescents</h5>
-                <p class="small">Jeunes de 12 à 14 ans en phase de détraumatisation par le sport.</p>
-            </div>
-        </div>
+    <div class="mt-5 p-4 bg-white rounded shadow-sm">
+        <h4 class="text-primary fw-bold">Besoins urgents</h4>
+        <p>Depuis l'arrêt des aides locales dû au conflit M23, les besoins prioritaires sont :</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><i class="fas fa-check text-success"></i> Farine de maïs, haricots et riz (Nutrition de base)</li>
+            <li class="list-group-item"><i class="fas fa-check text-success"></i> Lait pour les plus petits (1 à 4 ans)</li>
+            <li class="list-group-item"><i class="fas fa-check text-success"></i> Frais de scolarité pour les adolescents</li>
+            <li class="list-group-item"><i class="fas fa-check text-success"></i> Médicaments de première urgence</li>
+        </ul>
     </div>
 </section>
 
-<footer class="text-center py-5 bg-dark text-white mt-5">
-    <div class="container">
-        <p>© 2026 AFPD Bukavu - Un futur pour chaque enfant.</p>
-    </div>
+<footer class="bg-dark text-white text-center py-4">
+    <p>© 2026 AFPD Bukavu - Ibanda, RDC</p>
 </footer>
-
 </body>
 </html>
