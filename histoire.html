@@ -7,11 +7,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --primary: #2c7a7b; }
-        body { font-family: 'Poppins', sans-serif; line-height: 1.8; color: #333; }
-        .history-header { background: #f4f7f6; padding: 60px 0; border-bottom: 5px solid var(--primary); }
-        .quote { font-style: italic; color: var(--primary); font-size: 1.2rem; border-left: 4px solid var(--primary); padding-left: 20px; margin: 30px 0; }
-        .content-box { background: white; padding: 40px; border-radius: 15px; shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        :root { --primary: #2c7a7b; --secondary: #f6ad55; }
+        body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; }
+        .header-section { background: var(--primary); color: white; padding: 60px 0; text-align: center; }
+        .content-box { background: white; padding: 40px; border-radius: 15px; shadow: 0 4px 10px rgba(0,0,0,0.1); margin-top: -30px; }
     </style>
 </head>
 <body>
@@ -19,44 +18,33 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
     <div class="container">
         <a class="navbar-brand fw-bold text-primary" href="index.html">AFPD BUKAVU</a>
-        <a href="index.html" class="btn btn-outline-primary btn-sm">Retour Accueil</a>
+        <div class="ms-auto"><a class="btn btn-primary rounded-pill px-4" href="index.html">Accueil</a></div>
     </div>
 </nav>
 
-<header class="history-header text-center">
+<header class="header-section">
     <div class="container">
-        <h1 class="fw-bold">L'Héritage d'un Cœur Généreux</h1>
-        <p class="lead">D'une enfance partagée à la création de l'AFPD</p>
+        <h1>Notre Histoire & Résilience</h1>
     </div>
 </header>
 
-<section class="container my-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8 content-box">
-            <p>Depuis mon enfance, j'ai grandi au sein d'une famille nombreuse où chaque enfant avait ses propres amis. Ma mère, avec sa générosité et son amour infini, veillait à ce que nous soyons toujours entourés. Elle était connue sous le surnom de <strong>"la maman de plusieurs"</strong>.</p>
-            
-            <div class="quote">
-                "Lorsqu'elle remarquait l'absence de certains amis, elle nous incitait à aller les chercher, cultivant en nous l'importance du partage."
-            </div>
-
-            <p>En grandissant, cet exemple m'a marquée. Je me suis engagée en tant que chantre et j'ai commencé à aider ceux qui m'entouraient. Je me souviens de ces jumeaux gravement brûlés que nous avons aidés à guérir ; c'est là que j'ai compris le besoin immense de personnes charitables pour sauver les âmes en détresse.</p>
-
-            <p>Après m'être lancée dans les affaires, j'ai utilisé mes ressources pour soutenir les plus vulnérables : enfants de la rue, veuves, femmes abandonnées et prisonniers. Un moment fort de mon parcours a été l'achat d'une maison pour une femme ayant accouché de quadruplés le même jour.</p>
-
-        <img src="1000075692.jpg" alt="La fondatrice de l'AFPD" class="founder-photo">
-
-            <p>Aujourd'hui, je suis une mère comblée à la tête d'un orphelinat qui accueille directement <strong>26 enfants</strong> (de 5 mois à 14 ans) et soutient <strong>75 autres enfants</strong> en familles d'accueil.</p>
-
-            <div class="alert alert-warning text-center fw-bold mt-4">
-                "La vie d'un enfant vaut mieux que tout l'or du monde."
-            </div>
+<section class="container mb-5">
+    <div class="content-box shadow">
+        <h3 class="text-primary fw-bold">Un engagement malgré la guerre</h3>
+        <p>L'AFPD est née de la volonté de protéger les plus vulnérables à Bukavu. Depuis mars 2025, notre mission a pris un tournant héroïque. Lors des pillages qui ont frappé la ville, nos bienfaiteurs locaux ont tout perdu. Alors que de grandes structures ont choisi de déplacer leurs orphelinats au Rwanda, l'AFPD est restée à Ibanda.</p>
+        
+        <div class="alert alert-warning border-0 shadow-sm">
+            <strong>"Nous ne pouvions pas abandonner nos enfants."</strong><br>
+            Faute de moyens pour fuir, Sifa Matchara Immaculée et son équipe ont choisi de rester pour protéger les 30 orphelins, malgré la famine et l'instabilité causée par le mouvement M23.
         </div>
+
+        <h4 class="mt-4 text-primary">Notre situation aujourd'hui</h4>
+        <p>Aujourd'hui, nous luttons quotidiennement pour nourrir nos 30 protégés (âgés de 1 à 17 ans). Le calme est fragile, mais la famine est réelle. Notre histoire est celle d'une survie collective.</p>
     </div>
 </section>
 
-<footer class="text-center py-4 bg-light mt-5">
-    <p class="text-muted small">© 2026 AFPD Bukavu - Notre Histoire</p>
+<footer class="bg-dark text-white text-center py-4">
+    <p>© 2026 AFPD Bukavu - Commune d'Ibanda, RDC</p>
 </footer>
-
 </body>
 </html>
