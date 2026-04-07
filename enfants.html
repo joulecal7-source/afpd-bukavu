@@ -5,51 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nos Enfants - AFPD Bukavu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --primary: #2c7a7b; }
+        :root { --primary: #2c7a7b; --secondary: #f6ad55; }
         body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; }
-        .hero-kids { background: #2c7a7b; color: white; padding: 50px 0; text-align: center; }
-        .stat-card { background: white; border-radius: 15px; padding: 30px; border-top: 5px solid #f6ad55; text-align: center; }
+        .hero-kids { background: var(--primary); color: white; padding: 60px 0; text-align: center; }
+        .nav-btn-blue { background-color: #007bff !important; color: white !important; border-radius: 20px; padding: 8px 20px !important; font-weight: bold; }
+        .stat-card { background: white; border-radius: 15px; padding: 30px; border-top: 5px solid var(--secondary); text-align: center; height: 100%; }
     </style>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-    <div class="container"><a class="navbar-brand fw-bold text-primary" href="index.html">AFPD BUKAVU</a></div>
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="index.html">AFPD BUKAVU</a>
+        <div class="ms-auto"><a class="nav-link nav-btn-blue d-inline-block" href="index.html">Accueil</a></div>
+    </div>
 </nav>
 
 <header class="hero-kids">
     <div class="container">
         <h1>Nos 30 Protégés</h1>
-        <p>Ils sont l'avenir de Bukavu, nous sommes leur seul rempart.</p>
+        <p class="lead">Ils sont l'avenir de Bukavu, nous sommes leur rempart.</p>
     </div>
 </header>
 
 <section class="container py-5">
-    <div class="row g-4 justify-content-center">
+    <div class="row g-4 justify-content-center mb-5 text-center">
         <div class="col-md-4">
             <div class="stat-card shadow-sm">
                 <h2 class="display-4 fw-bold text-primary">30</h2>
-                <p class="text-muted">Enfants orphelins pris en charge</p>
+                <p class="text-muted fw-bold">Enfants résidents</p>
+                <p class="small">Filles et garçons de 1 mois à 17 ans vivant à l'orphelinat.</p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="stat-card shadow-sm">
-                <h2 class="display-4 fw-bold text-primary">1 à 17</h2>
-                <p class="text-muted">Tranche d'âge des enfants</p>
+                <h2 class="display-4 fw-bold text-primary">75</h2>
+                <p class="text-muted fw-bold">Enfants soutenus</p>
+                <p class="small">Placés en familles d'accueil avec notre suivi matériel régulier.</p>
             </div>
         </div>
     </div>
 
-    <div class="mt-5 p-4 bg-white rounded shadow-sm">
-        <h4 class="text-primary fw-bold">Besoins urgents</h4>
-        <p>Depuis l'arrêt des aides locales dû au conflit M23, les besoins prioritaires sont :</p>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"><i class="fas fa-check text-success"></i> Farine de maïs, haricots et riz (Nutrition de base)</li>
-            <li class="list-group-item"><i class="fas fa-check text-success"></i> Lait pour les plus petits (1 à 4 ans)</li>
-            <li class="list-group-item"><i class="fas fa-check text-success"></i> Frais de scolarité pour les adolescents</li>
-            <li class="list-group-item"><i class="fas fa-check text-success"></i> Médicaments de première urgence</li>
-        </ul>
+    <div class="bg-white p-4 rounded shadow-sm border-start border-warning border-5">
+        <h4 class="text-primary fw-bold"><i class="fas fa-exclamation-circle"></i> Besoins urgents (Contexte M23)</h4>
+        <p>Depuis le pillage de nos partenaires locaux par les soldats en 2025, nous manquons de :</p>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Farine de maïs, riz et haricots</li>
+                    <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Lait pour les nourrissons</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Frais de scolarité (Minervals)</li>
+                    <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Médicaments de base</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </section>
 
