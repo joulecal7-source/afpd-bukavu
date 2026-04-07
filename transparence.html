@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transparence - AFPD Bukavu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --primary: #2c7a7b; }
-        .bg-transparence { background-color: #f8f9fa; border-left: 5px solid var(--primary); }
-        .stat-card { border: none; border-radius: 15px; background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; }
+        .header-transp { background: var(--primary); color: white; padding: 60px 0; text-align: center; }
+        .nav-btn-blue { background-color: #007bff !important; color: white !important; border-radius: 20px; padding: 8px 20px !important; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -17,59 +17,41 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
     <div class="container">
         <a class="navbar-brand fw-bold text-primary" href="index.html">AFPD BUKAVU</a>
-        <a href="index.html" class="btn btn-outline-primary btn-sm">Retour Accueil</a>
+        <div class="ms-auto"><a class="nav-link nav-btn-blue d-inline-block" href="index.html">Accueil</a></div>
     </div>
 </nav>
 
-<div class="container my-5">
-    <div class="text-center mb-5">
-        <h1 class="fw-bold">Transparence & Gestion</h1>
-        <p class="lead text-muted">Comment vos dons sont utilisés pour nos 25 orphelins.</p>
+<header class="header-transp">
+    <div class="container">
+        <h1>Transparence & Redevabilité</h1>
+        <p>Chaque don est sacré et utilisé directement pour les enfants.</p>
+    </div>
+</header>
+
+<section class="container py-5">
+    <div class="card shadow-sm p-4 mb-4 border-0 border-start border-primary border-5">
+        <h4><i class="fas fa-shield-alt text-primary"></i> Notre Engagement</h4>
+        <p>Malgré la crise financière causée par le retrait des fonds bancaires par les soldats gouvernementaux, nous maintenons une gestion rigoureuse. 100% des dons internationaux servent à l'achat de vivres et au paiement des minervals scolaires.</p>
     </div>
 
     <div class="row g-4">
         <div class="col-md-6">
-            <div class="p-4 bg-transparence">
-                <h4 class="fw-bold text-primary">Utilisation des fonds</h4>
-                <p>Chaque franc congolais ou dollar reçu est prioritairement affecté à :</p>
-                <ul>
-                    <li><strong>Alimentation :</strong> 3 repas équilibrés par jour.</li>
-                    <li><strong>Scolarité :</strong> Frais d'école, uniformes et fournitures.</li>
-                    <li><strong>Santé :</strong> Soins médicaux d'urgence et suivi régulier.</li>
-                </ul>
+            <div class="p-4 bg-white rounded shadow-sm">
+                <h5 class="fw-bold text-primary">Preuves d'impact</h5>
+                <p>Nous publions régulièrement des photos de nos distributions sur nos réseaux sociaux et dans notre galerie pour montrer que l'aide arrive à destination.</p>
             </div>
         </div>
-
         <div class="col-md-6">
-            <div class="row g-3 text-center">
-                <div class="col-6">
-                    <div class="stat-card p-3">
-                        <h3 class="fw-bold text-primary">100%</h3>
-                        <p class="small mb-0">Dons reversés</p>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="stat-card p-3">
-                        <h3 class="fw-bold text-primary">25</h3>
-                        <p class="small mb-0">Enfants pris en charge</p>
-                    </div>
-                </div>
+            <div class="p-4 bg-white rounded shadow-sm">
+                <h5 class="fw-bold text-primary">Contact Audit</h5>
+                <p>Pour toute question sur l'utilisation des fonds ou pour un rapport détaillé, contactez Sifa Matchara Immaculée.</p>
             </div>
         </div>
     </div>
+</section>
 
-    <div class="mt-5 p-4 rounded-4 shadow-sm border bg-white">
-        <h3 class="fw-bold mb-4 text-center">Rapports d'activités</h3>
-        <p class="text-center">Nous nous engageons à fournir des rapports réguliers sur l'évolution de la situation à Ibanda (Bukavu).</p>
-        <div class="text-center mt-4">
-            <a href="https://wa.me/243998440006" class="btn btn-primary">Demander un rapport par WhatsApp</a>
-        </div>
-    </div>
-</div>
-
-<footer class="text-center py-4 text-muted">
-    <p>© 2026 AFPD Bukavu - Intégrité et Dévouement.</p>
+<footer class="bg-dark text-white text-center py-4">
+    <p>© 2026 AFPD Bukavu - Ibanda, RDC</p>
 </footer>
-
 </body>
 </html>
