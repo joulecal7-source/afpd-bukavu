@@ -3,50 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AFPD - Orphelinat Bukavu</title>
+    <title>ORPHELINAT AFPD BUKAVU</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --primary: #2c7a7b; --secondary: #f6ad55; --accent-blue: #007bff; --danger-red: #d9534f; }
         body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; color: #333; }
         
-        /* PHOTO DE FOND MISE À JOUR AVEC TES ENFANTS */
+        /* HEADER AVEC PHOTO DES ENFANTS */
         .hero { 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('1775544952020.jpg'); 
-            height: 75vh; background-size: cover; background-position: center; color: white; 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('1775544952020.jpg'); 
+            height: 85vh; background-size: cover; background-position: center; color: white; 
             display: flex; align-items: center; justify-content: center; text-align: center; 
         }
-        
-        /* BANDEAU D'URGENCE FAMINE/PILLAGE */
-        .emergency-bar { background-color: var(--danger-red); color: white; padding: 15px 0; text-align: center; font-weight: bold; border-bottom: 3px solid #b52b27; }
+
+        /* ANIMATION PULSATION DU BANDEAU ROUGE */
+        @keyframes pulse-emergency {
+            0% { transform: scale(1); background-color: #d9534f; }
+            50% { transform: scale(1.02); background-color: #ff4d4d; }
+            100% { transform: scale(1); background-color: #d9534f; }
+        }
+
+        .emergency-bar { 
+            background-color: var(--danger-red); 
+            color: white; 
+            padding: 20px 0; 
+            text-align: center; 
+            font-weight: bold; 
+            font-size: 1.2rem;
+            animation: pulse-emergency 2s infinite ease-in-out;
+            border-bottom: 4px solid #b52b27;
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav-btn-blue { background-color: var(--accent-blue) !important; color: white !important; border-radius: 20px; padding: 8px 20px !important; font-weight: bold; }
+        .section-title { color: var(--primary); font-weight: bold; margin-bottom: 40px; }
+        .card-custom { border: none; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; height: 100%; border-top: 5px solid var(--primary); }
         
         .btn-whatsapp-float { 
             position: fixed; bottom: 20px; right: 20px; background-color: #25d366; 
-            color: white; border-radius: 50px; padding: 12px 20px; z-index: 1000; 
-            text-decoration: none; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            color: white; border-radius: 50px; padding: 12px 25px; z-index: 1000; 
+            text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
-        .nav-btn-blue {
-            background-color: var(--accent-blue) !important;
-            color: white !important;
-            border-radius: 20px;
-            padding: 8px 20px !important;
-            margin-left: 10px;
-            font-weight: bold;
-        }
-        .section-title { color: var(--primary); font-weight: bold; margin-bottom: 40px; }
-        .card-custom { border: none; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; height: 100%; }
-        .card-custom:hover { transform: translateY(-5px); }
-        .icon-box { color: var(--secondary); margin-bottom: 15px; }
-        .share-bar { background: #eee; padding: 20px 0; border-top: 1px solid #ddd; }
-        .btn-share { margin: 5px; border-radius: 25px; font-weight: bold; }
-        .btn-fb { background: #1877F2; color: white; }
-        .btn-wa { background: #25D366; color: white; }
     </style>
 </head>
 <body>
 
 <a href="https://wa.me/243998440006" class="btn-whatsapp-float" target="_blank">
-    <i class="fab fa-whatsapp"></i> WhatsApp Direct
+    <i class="fab fa-whatsapp"></i> WhatsApp Sifa
 </a>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
@@ -59,7 +64,7 @@
             <ul class="navbar-nav ms-auto align-items-center">
                 <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
                 <li class="nav-item"><a class="nav-link nav-btn-blue" href="histoire.html">Notre Histoire</a></li>
-                <li class="nav-item"><a class="nav-link" href="enfants.html">Nos Enfants</a></li>
+                <li class="nav-item"><a class="nav-link" href="enfants.html">Nos 105 Enfants</a></li>
                 <li class="nav-item"><a class="nav-link" href="galerie.html">Galerie</a></li>
                 <li class="nav-item"><a class="nav-link" href="transparence.html">Transparence</a></li>
                 <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
@@ -69,65 +74,72 @@
 </nav>
 
 <header class="hero">
-    <div class="container text-center">
-        <h1 class="display-3 fw-bold">AFPD Bukavu</h1>
-        <p class="lead italic fs-4">Action de Femmes pour la Paix et le Développement</p>
-        <div class="mt-4">
-            <a href="#missions" class="btn btn-warning btn-lg fw-bold px-5">Notre Mission</a>
-            <a href="#don" class="btn btn-outline-light btn-lg ms-2 px-5">Faire un Don</a>
+    <div class="container">
+        <h1 class="display-1 fw-bold mb-0">ORPHELINAT AFPD</h1>
+        <h2 class="display-4 fw-bold mb-4" style="color: var(--secondary);">BUKAVU</h2>
+        <p class="lead fs-3 mb-5">Action de Femmes pour la Paix et le Développement</p>
+        <div>
+            <a href="#don" class="btn btn-warning btn-lg fw-bold px-5 py-3 shadow">FAIRE UN DON</a>
+            <a href="#benevole" class="btn btn-outline-light btn-lg ms-3 px-5 py-3">DEVENIR BÉNÉVOLE</a>
         </div>
     </div>
 </header>
 
 <section class="emergency-bar">
     <div class="container">
-        <i class="fas fa-exclamation-triangle me-2"></i> URGENCE FAMINE : Suite aux pillages de 2025, nous avons besoin de vous pour nourrir nos 30 enfants.
+        <i class="fas fa-exclamation-circle fa-lg me-2"></i> 
+        <strong>URGENCE FAMINE :</strong> Nos partenaires pillés en 2025, nous luttons pour nourrir nos 30 résidents et 75 externes.
     </div>
 </section>
 
-<section class="container py-5" id="missions">
+<section class="container py-5">
     <div class="text-center mb-5">
-        <h2 class="section-title">Notre Mission au Sud-Kivu</h2>
-        <p class="lead">L'AFPD soutient 30 orphelins résidents et 75 autres en familles d'accueil dans la commune d'Ibanda.</p>
+        <h2 class="section-title">Notre Impact : 105 Vies à Protéger</h2>
+        <p class="lead">Basés à Ibanda, nous refusons de laisser la faim décider de l'avenir de nos enfants.</p>
     </div>
 
     <div class="row g-4 text-center">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="card card-custom p-4">
-                <div class="icon-box"><i class="fas fa-bullseye fa-3x"></i></div>
-                <h4>Survie & Nutrition</h4>
-                <p>Garantir au moins un repas par jour pour chaque enfant en cette période de famine sans précédent.</p>
+                <div class="display-4 fw-bold text-primary mb-2">30</div>
+                <h4>Enfants Hébergés</h4>
+                <p>Logés, nourris, scolarisés et suivis médicalement 24h/24 au sein de l'orphelinat. Ils reçoivent un encadrement socio-culturel complet.</p>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card card-custom p-4">
-                <div class="icon-box"><i class="fas fa-tasks fa-3x"></i></div>
-                <h4>Éducation</h4>
-                <p>Maintenir la scolarisation totale des 30 enfants, de la maternelle à l'école secondaire.</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-custom p-4">
-                <div class="icon-box"><i class="fas fa-hand-holding-heart fa-3x"></i></div>
-                <h4>Résilience</h4>
-                <p>Nous sommes restés à Bukavu pour être le seul rempart familial de ces orphelins.</p>
+        <div class="col-md-6">
+            <div class="card card-custom p-4" style="border-top-color: var(--secondary);">
+                <div class="display-4 fw-bold text-warning mb-2">75</div>
+                <h4>Enfants Soutenus</h4>
+                <p>Enfants externes bénéficiant de notre programme de lutte contre la malnutrition et d'un accès aux soins médicaux d'urgence.</p>
             </div>
         </div>
     </div>
 </section>
 
-<section id="don" class="bg-light py-5">
+<section id="benevole" class="py-5" style="background-color: #2c7a7b; color: white;">
     <div class="container text-center">
-        <h2 class="section-title">Comment Aider ?</h2>
+        <h2 class="fw-bold mb-4">Devenez Bénévole (Virtuel ou Physique)</h2>
+        <p class="fs-5 mb-4">Nous avons besoin de vos compétences pour rendre ces enfants autonomes. Apprenez-leur un métier !</p>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <p>Que vous soyez expert en informatique, artisan, enseignant ou artiste, votre savoir est une richesse. Contactez-nous pour organiser des sessions de mentorat, même à distance.</p>
+                <a href="https://wa.me/243998440006" class="btn btn-outline-light btn-lg mt-3 px-5">Je propose mes services</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="don" class="py-5 bg-white">
+    <div class="container text-center">
+        <h2 class="section-title">Comment Nous Aider financièrement ?</h2>
         <div class="row">
             <div class="col-md-6 mx-auto">
-                <div class="card shadow p-4 border-0" style="border-top: 5px solid #f6ad55 !important;">
-                    <h4 class="text-primary mb-3">Coordonnées Mobiles</h4>
-                    <p class="mb-1"><strong>Airtel Money :</strong> +243 998 440 006</p>
-                    <p class="mb-1"><strong>M-Pesa :</strong> +243 825 831 628</p>
-                    <p><strong>Titulaire :</strong> Sifa Matchara Immaculée</p>
+                <div class="card shadow p-4 border-0 bg-light">
+                    <p class="mb-2"><strong>Airtel Money :</strong> +243 998 440 006</p>
+                    <p class="mb-2"><strong>M-Pesa :</strong> +243 825 831 628</p>
+                    <p class="fw-bold text-primary">Titulaire : Sifa Matchara Immaculée</p>
                     <hr>
-                    <p class="small text-muted">Chaque don, même petit, permet d'acheter de la farine de maïs et du haricot pour les enfants.</p>
+                    <p class="small text-muted italic">"La vie d'un enfant vaut mieux que tout l'or du monde."</p>
                 </div>
             </div>
         </div>
@@ -135,7 +147,7 @@
 </section>
 
 <footer class="bg-dark text-white text-center py-4">
-    <p>© 2026 AFPD Bukavu - Commune d'Ibanda, RDC</p>
+    <p>© 2026 ORPHELINAT AFPD BUKAVU - Sud-Kivu, RDC</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
