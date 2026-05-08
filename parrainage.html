@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parrainez un Enfant — AFPD Bukavu</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --vert: #2e7d32;
+      --vert-clair: #43a047;
+      --or: #f9a825;
+      --rouge: #c62828;
+      --bleu: #1565c0;
+      --bg: #f5f5f5;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: #222; }
+
+    .navbar { background: var(--vert); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .navbar-brand { color: #fff; font-size: 1.3rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .navbar-links a { color: rgba(255,255,255,0.85); text-decoration: none; margin: 0 8px; font-size: 0.9rem; }
+    .navbar-links a:hover { color: var(--or); }
+    .btn-lang { background: var(--or); color: #222; border: none; border-radius: 20px; padding: 5px 14px; font-weight: 700; cursor: pointer; font-size: 0.85rem; }
+
+    .hero { background: linear-gradient(135deg, var(--vert) 0%, #1b5e20 60%, #0d3b0d 100%); color: #fff; padding: 60px 20px 50px; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -50px; right: -50px; width: 300px; height: 300px; background: rgba(249,168,37,0.1); border-radius: 50%; }
+    .hero h1 { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 800; margin-bottom: 15px; }
+    .hero h1 span { color: var(--or); }
+    .hero p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto 25px; }
+    .hero-stats { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 30px; }
+    .hero-stat { background: rgba(255,255,255,0.15); border-radius: 12px; padding: 15px 25px; text-align: center; }
+    .hero-stat .num { font-size: 2.2rem; font-weight: 800; color: var(--or); }
+    .hero-stat .label { font-size: 0.85rem; opacity: 0.85; }
+    .btn-audio-hero { background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.5); color: #fff; border-radius: 25px; padding: 8px 20px; cursor: pointer; font-size: 0.9rem; margin-top: 20px; }
+    .btn-audio-hero:hover { background: rgba(255,255,255,0.3); }
+
+    .urgence-bar { background: var(--rouge); color: #fff; text-align: center; padding: 12px 20px; font-weight: 600; font-size: 0.95rem; }
+    .urgence-bar i { margin-right: 8px; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+    .section-title { text-align: center; padding: 50px 20px 20px; }
+    .section-title h2 { font-size: 2rem; font-weight: 800; color: var(--vert); }
+    .section-title p { color: #555; max-width: 600px; margin: 10px auto 0; }
+    .divider { width: 60px; height: 4px; background: var(--or); border-radius: 2px; margin: 15px auto; }
+
+    .niveaux { padding: 20px 15px 50px; }
+    .niveaux-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
+    .niveau-card { background: #fff; border-radius: 16px; padding: 30px 20px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-top: 5px solid var(--vert); transition: transform 0.2s, box-shadow 0.2s; position: relative; }
+    .niveau-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
+    .niveau-card.featured { border-top-color: var(--or); background: linear-gradient(135deg, #fff9e6, #fff); }
+    .niveau-card.featured .badge-pop { display: block; }
+    .badge-pop { display: none; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--or); color: #222; font-size: 0.75rem; font-weight: 700; padding: 4px 14px; border-radius: 20px; white-space: nowrap; }
+    .niveau-icon { font-size: 2.5rem; margin-bottom: 10px; }
+    .niveau-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--vert); margin-bottom: 5px; }
+    .niveau-prix { font-size: 2rem; font-weight: 800; color: var(--rouge); margin: 10px 0; }
+    .niveau-prix span { font-size: 1rem; color: #777; font-weight: 400; }
+    .niveau-card ul { list-style: none; text-align: left; margin: 15px 0; }
+    .niveau-card ul li { padding: 5px 0; font-size: 0.9rem; color: #444; }
+    .niveau-card ul li::before { content: '✅ '; }
+    .btn-parrainer { background: var(--vert); color: #fff; border: none; border-radius: 25px; padding: 12px 28px; font-weight: 700; cursor: pointer; width: 100%; font-size: 1rem; transition: background 0.2s; margin-top: 10px; }
+    .btn-parrainer:hover { background: var(--vert-clair); }
+    .niveau-card.featured .btn-parrainer { background: var(--or); color: #222; }
+    .niveau-card.featured .btn-parrainer:hover { background: #f0a000; }
+
+    .enfants-section { background: #fff; padding: 20px 15px 50px; }
+    .enfants-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
+    .enfant-card { background: var(--bg); border-radius: 16px; overflow: hidden; box-shadow: 0 3px 15px rgba(0,0,0,0.08); transition: transform 0.2s; }
+    .enfant-card:hover { transform: translateY(-4px); }
+    .enfant-photo { width: 100%; height: 200px; object-fit: cover; }
+    .enfant-photo-placeholder { width: 100%; height: 200px; background: linear-gradient(135deg, #e8f5e9, #c8e6c9); display: flex; align-items: center; justify-content: center; font-size: 4rem; }
+    .enfant-info { padding: 15px; }
+    .enfant-nom { font-weight: 700; font-size: 1rem; color: var(--vert); }
+    .enfant-age { font-size: 0.85rem; color: #777; margin: 3px 0; }
+    .enfant-reve { font-size: 0.85rem; color: #444; font-style: italic; margin: 8px 0; }
+    .badge-statut { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+    .badge-disponible { background: #e8f5e9; color: var(--vert); }
+    .btn-parrainer-enfant { background: var(--vert); color: #fff; border: none; border-radius: 20px; padding: 8px 18px; font-size: 0.85rem; font-weight: 600; cursor: pointer; width: 100%; margin-top: 10px; transition: background 0.2s; }
+    .btn-parrainer-enfant:hover { background: var(--vert-clair); }
+
+    .comment { background: linear-gradient(135deg, #e8f5e9, #f1f8e9); padding: 50px 15px; }
+    .etapes { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; max-width: 900px; margin: 30px auto 0; }
+    .etape { text-align: center; padding: 20px; }
+    .etape-num { width: 50px; height: 50px; background: var(--vert); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 800; margin: 0 auto 15px; }
+    .etape h4 { font-size: 1rem; font-weight: 700; color: var(--vert); margin-bottom: 8px; }
+    .etape p { font-size: 0.88rem; color: #555; }
+
+    .formulaire-section { background: #fff; padding: 50px 15px; }
+    .form-container { max-width: 650px; margin: 0 auto; background: var(--bg); border-radius: 20px; padding: 35px 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .form-container h3 { font-size: 1.5rem; font-weight: 700; color: var(--vert); margin-bottom: 5px; }
+    .form-container p { color: #666; margin-bottom: 25px; font-size: 0.9rem; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 6px; color: #333; font-size: 0.9rem; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 0.95rem; transition: border-color 0.2s; font-family: inherit; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--vert); }
+    .btn-submit { background: var(--vert); color: #fff; border: none; border-radius: 25px; padding: 14px 35px; font-size: 1rem; font-weight: 700; cursor: pointer; width: 100%; transition: background 0.2s; }
+    .btn-submit:hover { background: var(--vert-clair); }
+    .contact-direct { margin-top: 25px; padding: 20px; background: #e8f5e9; border-radius: 12px; text-align: center; }
+    .contact-direct p { font-size: 0.9rem; color: #444; margin-bottom: 10px; }
+    .contact-direct a { display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: #fff; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 700; font-size: 0.9rem; margin: 5px; }
+    .contact-direct a.email-btn { background: var(--bleu); }
+
+    /* TÉMOIGNAGES */
+    .temoignages { background: var(--vert); color: #fff; padding: 50px 15px; }
+    .temoignages h2 { text-align: center; font-size: 1.8rem; font-weight: 800; margin-bottom: 10px; }
+    .temoignages .sous-titre { text-align: center; opacity: 0.8; font-size: 0.95rem; margin-bottom: 35px; }
+    .temoignages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 900px; margin: 0 auto; }
+
+    /* Témoignage principal — Joule */
+    .temoignage-principal {
+      background: rgba(255,255,255,0.18);
+      border: 2px solid var(--or);
+      border-radius: 20px;
+      padding: 30px 25px;
+      position: relative;
+    }
+    .temoignage-principal::before {
+      content: '"';
+      position: absolute;
+      top: -10px; left: 20px;
+      font-size: 4rem;
+      color: var(--or);
+      line-height: 1;
+      font-family: Georgia, serif;
+    }
+    .temoignage-principal p {
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 1.75;
+      opacity: 0.95;
+      margin-bottom: 18px;
+      margin-top: 10px;
+    }
+    .temoignage-principal .auteur {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--or);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .temoignage-principal .auteur-badge {
+      background: var(--or);
+      color: #222;
+      font-size: 0.7rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 700;
+    }
+
+    /* Carte invitation futurs témoins */
+    .temoignage-invite {
+      background: rgba(255,255,255,0.08);
+      border: 2px dashed rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 30px 25px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    .temoignage-invite .invite-icon { font-size: 2.5rem; }
+    .temoignage-invite h4 { font-size: 1.1rem; font-weight: 700; }
+    .temoignage-invite p { font-size: 0.88rem; opacity: 0.8; line-height: 1.6; }
+    .btn-temoigner {
+      background: var(--or);
+      color: #222;
+      border: none;
+      border-radius: 25px;
+      padding: 10px 22px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+    .btn-temoigner:hover { background: #f0a000; color: #222; }
+
+    footer { background: #1a1a1a; color: #aaa; text-align: center; padding: 25px 15px; font-size: 0.85rem; }
+    footer a { color: var(--or); text-decoration: none; }
+
+    .whatsapp-float { position: fixed; bottom: 25px; right: 20px; background: #25d366; color: #fff; border-radius: 50px; padding: 12px 18px; text-decoration: none; font-weight: 700; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(37,211,102,0.4); z-index: 999; display: flex; align-items: center; gap: 8px; transition: transform 0.2s; }
+    .whatsapp-float:hover { transform: scale(1.05); color: #fff; }
+
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center; }
+    .modal-overlay.active { display: flex; }
+    .modal-box { background: #fff; border-radius: 20px; padding: 35px 30px; max-width: 500px; width: 90%; text-align: center; position: relative; }
+    .modal-box h3 { color: var(--vert); font-size: 1.4rem; font-weight: 800; margin-bottom: 10px; }
+    .modal-box p { color: #555; margin-bottom: 20px; font-size: 0.95rem; }
+    .modal-close { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #999; background: none; border: none; }
+    .modal-enfant-info { background: #e8f5e9; border-radius: 12px; padding: 15px; margin-bottom: 20px; text-align: left; }
+    .modal-enfant-info p { margin-bottom: 5px; font-size: 0.9rem; color: #333; }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.6rem; }
+      .hero-stats { gap: 15px; }
+      .hero-stat { padding: 12px 18px; }
+      .navbar-links { display: none; }
+      .form-container { padding: 25px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="index.html" class="navbar-brand">
+    <i class="fas fa-heart"></i> AFPD BUKAVU
+  </a>
+  <div class="navbar-links">
+    <a href="index.html" class="d-lang fr">Accueil</a>
+    <a href="index.html" class="d-lang en" style="display:none">Home</a>
+    <a href="#enfants" class="d-lang fr">Nos Enfants</a>
+    <a href="#enfants" class="d-lang en" style="display:none">Our Children</a>
+    <a href="#formulaire" class="d-lang fr">Parrainer</a>
+    <a href="#formulaire" class="d-lang en" style="display:none">Sponsor</a>
+  </div>
+  <button class="btn-lang" onclick="toggleLang()">🌐 EN / FR</button>
+</nav>
+
+<!-- URGENCE -->
+<div class="urgence-bar">
+  <span class="d-lang fr"><i class="fas fa-exclamation-triangle"></i> URGENCE : Suite à la guerre entre le M23 et les FARDC, 105 enfants ont besoin de votre aide immédiate !</span>
+  <span class="d-lang en" style="display:none"><i class="fas fa-exclamation-triangle"></i> EMERGENCY: Following the war between M23 and the FARDC, 105 children need your immediate help!</span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <h1 class="d-lang fr">Parrainez un Enfant de <span>Bukavu</span></h1>
+  <h1 class="d-lang en" style="display:none">Sponsor a Child from <span>Bukavu</span></h1>
+  <p class="d-lang fr">Votre parrainage mensuel offre à un enfant de l'AFPD de la nourriture, des soins médicaux et une éducation. Un geste simple, un avenir transformé.</p>
+  <p class="d-lang en" style="display:none">Your monthly sponsorship gives an AFPD child food, medical care and education. A simple gesture, a transformed future.</p>
+  <button class="btn-audio-hero" onclick="speakHero()">
+    <i class="fas fa-volume-up"></i>
+    <span class="d-lang fr"> Écouter</span>
+    <span class="d-lang en" style="display:none"> Listen</span>
+  </button>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="num">105</div>
+      <div class="label d-lang fr">Enfants à aider</div>
+      <div class="label d-lang en" style="display:none">Children to help</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">0</div>
+      <div class="label d-lang fr">Parrains actifs</div>
+      <div class="label d-lang en" style="display:none">Active sponsors</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">2018</div>
+      <div class="label d-lang fr">Créé en</div>
+      <div class="label d-lang en" style="display:none">Created in</div>
+    </div>
+  </div>
+</section>
+
+<!-- NIVEAUX DE PARRAINAGE -->
+<div class="section-title">
+  <h2 class="d-lang fr">Choisissez Votre Niveau de Parrainage</h2>
+  <h2 class="d-lang en" style="display:none">Choose Your Sponsorship Level</h2>
+  <div class="divider"></div>
+  <p class="d-lang fr">Chaque montant fait une différence réelle dans la vie d'un enfant.</p>
+  <p class="d-lang en" style="display:none">Every amount makes a real difference in a child's life.</p>
+</div>
+
+<section class="niveaux">
+  <div class="niveaux-grid">
+    <div class="niveau-card">
+      <div class="niveau-icon">🌱</div>
+      <h3 class="d-lang fr">Ami de l'Enfant</h3>
+      <h3 class="d-lang en" style="display:none">Child's Friend</h3>
+      <div class="niveau-prix">$10 <span class="d-lang fr">/mois</span><span class="d-lang en" style="display:none">/month</span></div>
+      <ul>
+        <li class="d-lang fr">Repas quotidiens pour 1 enfant</li>
+        <li class="d-lang en" style="display:none">Daily meals for 1 child</li>
+        <li class="d-lang fr">Photo de l'enfant parrainé</li>
+        <li class="d-lang en" style="display:none">Photo of sponsored child</li>
+        <li class="d-lang fr">Rapport mensuel par WhatsApp</li>
+        <li class="d-lang en" style="display:none">Monthly report via WhatsApp</li>
+      </ul>
+      <button class="btn-parrainer" onclick="ouvrirModal('Ami de l\'Enfant', '$10/mois')">
+        <span class="d-lang fr">Je Parraine</span>
+        <span class="d-lang en" style="display:none">I Sponsor</span>
+      </button>
+    </div>
+
+    <div class="niveau-card featured">
+      <span class="badge-pop d-lang fr">⭐ Le Plus Choisi</span>
+      <span class="badge-pop d-lang en" style="display:none">⭐ Most Popular</span>
+      <div class="niveau-icon">💛</div>
+      <h3 class="d-lang fr">Protecteur</h3>
+      <h3 class="d-lang en" style="display:none">Protector</h3>
+      <div class="niveau-prix">$30 <span class="d-lang fr">/mois</span><span class="d-lang en" style="display:none">/month</span></div>
+      <ul>
+        <li class="d-lang fr">Nourriture complète + médicaments</li>
+        <li class="d-lang en" style="display:none">Full food + medicines</li>
+        <li class="d-lang fr">Frais scolaires</li>
+        <li class="d-lang en" style="display:none">School fees</li>
+        <li class="d-lang fr">Lettre de l'enfant chaque trimestre</li>
+        <li class="d-lang en" style="display:none">Letter from child each quarter</li>
+        <li class="d-lang fr">Rapport mensuel + photos</li>
+        <li class="d-lang en" style="display:none">Monthly report + photos</li>
+        <li class="d-lang fr">Certificat de parrainage</li>
+        <li class="d-lang en" style="display:none">Sponsorship certificate</li>
+      </ul>
+      <button class="btn-parrainer" onclick="ouvrirModal('Protecteur', '$30/mois')">
+        <span class="d-lang fr">Je Parraine</span>
+        <span class="d-lang en" style="display:none">I Sponsor</span>
+      </button>
+    </div>
+
+    <div class="niveau-card">
+      <div class="niveau-icon">🌟</div>
+      <h3 class="d-lang fr">Bienfaiteur</h3>
+      <h3 class="d-lang en" style="display:none">Benefactor</h3>
+      <div class="niveau-prix">$50 <span class="d-lang fr">/mois</span><span class="d-lang en" style="display:none">/month</span></div>
+      <ul>
+        <li class="d-lang fr">Tout le niveau Protecteur</li>
+        <li class="d-lang en" style="display:none">Everything in Protector level</li>
+        <li class="d-lang fr">Parrainage de 2 enfants</li>
+        <li class="d-lang en" style="display:none">Sponsorship of 2 children</li>
+        <li class="d-lang fr">Appel vidéo avec les enfants (1x/an)</li>
+        <li class="d-lang en" style="display:none">Video call with children (1x/year)</li>
+        <li class="d-lang fr">Nom affiché sur le site AFPD</li>
+        <li class="d-lang en" style="display:none">Name displayed on AFPD website</li>
+      </ul>
+      <button class="btn-parrainer" onclick="ouvrirModal('Bienfaiteur', '$50/mois')">
+        <span class="d-lang fr">Je Parraine</span>
+        <span class="d-lang en" style="display:none">I Sponsor</span>
+      </button>
+    </div>
+
+    <div class="niveau-card">
+      <div class="niveau-icon">👑</div>
+      <h3 class="d-lang fr">Grand Donateur</h3>
+      <h3 class="d-lang en" style="display:none">Major Donor</h3>
+      <div class="niveau-prix">$100+ <span class="d-lang fr">/mois</span><span class="d-lang en" style="display:none">/month</span></div>
+      <ul>
+        <li class="d-lang fr">Parrainage de 5 enfants ou plus</li>
+        <li class="d-lang en" style="display:none">Sponsorship of 5+ children</li>
+        <li class="d-lang fr">Rapport financier trimestriel</li>
+        <li class="d-lang en" style="display:none">Quarterly financial report</li>
+        <li class="d-lang fr">Plaque de reconnaissance à l'orphelinat</li>
+        <li class="d-lang en" style="display:none">Recognition plaque at orphanage</li>
+        <li class="d-lang fr">Contact direct avec la directrice Sifa</li>
+        <li class="d-lang en" style="display:none">Direct contact with director Sifa</li>
+      </ul>
+      <button class="btn-parrainer" onclick="ouvrirModal('Grand Donateur', '$100+/mois')">
+        <span class="d-lang fr">Je Parraine</span>
+        <span class="d-lang en" style="display:none">I Sponsor</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- COMMENT ÇA MARCHE -->
+<section class="comment">
+  <div class="section-title" style="padding-top:0">
+    <h2 class="d-lang fr" style="color:var(--vert)">Comment Fonctionne le Parrainage ?</h2>
+    <h2 class="d-lang en" style="display:none;color:var(--vert)">How Does Sponsorship Work?</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="etapes">
+    <div class="etape">
+      <div class="etape-num">1</div>
+      <h4 class="d-lang fr">Choisissez un Enfant</h4>
+      <h4 class="d-lang en" style="display:none">Choose a Child</h4>
+      <p class="d-lang fr">Parcourez les profils et choisissez l'enfant que vous souhaitez parrainer.</p>
+      <p class="d-lang en" style="display:none">Browse the profiles and choose the child you want to sponsor.</p>
+    </div>
+    <div class="etape">
+      <div class="etape-num">2</div>
+      <h4 class="d-lang fr">Remplissez le Formulaire</h4>
+      <h4 class="d-lang en" style="display:none">Fill the Form</h4>
+      <p class="d-lang fr">Donnez vos coordonnées et choisissez votre niveau de parrainage.</p>
+      <p class="d-lang en" style="display:none">Provide your contact details and choose your sponsorship level.</p>
+    </div>
+    <div class="etape">
+      <div class="etape-num">3</div>
+      <h4 class="d-lang fr">Nous Vous Contactons</h4>
+      <h4 class="d-lang en" style="display:none">We Contact You</h4>
+      <p class="d-lang fr">L'équipe AFPD vous contacte sous 48h pour confirmer et organiser le paiement via WorldRemit ou TapTap Send.</p>
+      <p class="d-lang en" style="display:none">The AFPD team contacts you within 48h to confirm and arrange payment via WorldRemit or TapTap Send.</p>
+    </div>
+    <div class="etape">
+      <div class="etape-num">4</div>
+      <h4 class="d-lang fr">Suivez Votre Enfant</h4>
+      <h4 class="d-lang en" style="display:none">Follow Your Child</h4>
+      <p class="d-lang fr">Recevez des nouvelles, photos et lettres de votre enfant chaque mois.</p>
+      <p class="d-lang en" style="display:none">Receive news, photos and letters from your child every month.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILS ENFANTS -->
+<section class="enfants-section" id="enfants">
+  <div class="section-title" style="padding-top:30px">
+    <h2 class="d-lang fr">Ils Attendent Votre Parrainage</h2>
+    <h2 class="d-lang en" style="display:none">They Are Waiting for Your Sponsorship</h2>
+    <div class="divider"></div>
+    <p class="d-lang fr">Ces enfants ont besoin d'un parrain. Chaque profil représente une vraie histoire, un vrai rêve.</p>
+    <p class="d-lang en" style="display:none">These children need a sponsor. Each profile represents a real story, a real dream.</p>
+  </div>
+  <div class="enfants-grid">
+
+    <!-- SHALOM -->
+    <div class="enfant-card">
+      <img src="IMG-20260508-WA0101.jpg" alt="Shalom AFPD" class="enfant-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="enfant-photo-placeholder" style="display:none">👦</div>
+      <div class="enfant-info">
+        <div class="enfant-nom">Shalom</div>
+        <div class="enfant-age d-lang fr">👦 Garçon | AFPD Bukavu</div>
+        <div class="enfant-age d-lang en" style="display:none">👦 Boy | AFPD Bukavu</div>
+        <div class="enfant-reve d-lang fr">"Je veux grandir et aider ma communauté."</div>
+        <div class="enfant-reve d-lang en" style="display:none">"I want to grow up and help my community."</div>
+        <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
+        <span class="badge-statut badge-disponible d-lang en" style="display:none">✅ Available</span>
+        <button class="btn-parrainer-enfant" onclick="ouvrirModalEnfant('Shalom','Garçon','Garçon')"><span class="d-lang fr">Parrainer Shalom</span><span class="d-lang en" style="display:none">Sponsor Shalom</span></button>
+      </div>
+    </div>
+
+    <!-- JOËLLE -->
+    <div class="enfant-card">
+      <img src="IMG-20260508-WA0121.jpg" alt="Joëlle AFPD" class="enfant-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="enfant-photo-placeholder" style="display:none">👧</div>
+      <div class="enfant-info">
+        <div class="enfant-nom">Joëlle</div>
+        <div class="enfant-age d-lang fr">👧 Fille | AFPD Bukavu</div>
+        <div class="enfant-age d-lang en" style="display:none">👧 Girl | AFPD Bukavu</div>
+        <div class="enfant-reve d-lang fr">"Je rêve d'être enseignante pour apprendre aux autres."</div>
+        <div class="enfant-reve d-lang en" style="display:none">"I dream of being a teacher to help others learn."</div>
+        <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
+        <span class="badge-statut badge-disponible d-lang en" style="display:none">✅ Available</span>
+        <button class="btn-parrainer-enfant" onclick="ouvrirModalEnfant('Joëlle','Fille','Fille')"><span class="d-lang fr">Parrainer Joëlle</span><span class="d-lang en" style="display:none">Sponsor Joëlle</span></button>
+      </div>
+    </div>
+
+    <!-- DESTIN -->
+    <div class="enfant-card">
+      <img src="IMG-20260508-WA0135.jpg" alt="Destin AFPD" class="enfant-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="enfant-photo-placeholder" style="display:none">👦</div>
+      <div class="enfant-info">
+        <div class="enfant-nom">Destin</div>
+        <div class="enfant-age d-lang fr">👦 Garçon | AFPD Bukavu</div>
+        <div class="enfant-age d-lang en" style="display:none">👦 Boy | AFPD Bukavu</div>
+        <div class="enfant-reve d-lang fr">"Mon rêve est de devenir ingénieur."</div>
+        <div class="enfant-reve d-lang en" style="display:none">"My dream is to become an engineer."</div>
+        <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
+        <span class="badge-statut badge-disponible d-lang en" style="display:none">✅ Available</span>
+        <button class="btn-parrainer-enfant" onclick="ouvrirModalEnfant('Destin','Garçon','Garçon')"><span class="d-lang fr">Parrainer Destin</span><span class="d-lang en" style="display:none">Sponsor Destin</span></button>
+      </div>
+    </div>
+
+    <!-- ÉLISABETH -->
+    <div class="enfant-card">
+      <img src="IMG-20260508-WA0137.jpg" alt="Élisabeth AFPD" class="enfant-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="enfant-photo-placeholder" style="display:none">👧</div>
+      <div class="enfant-info">
+        <div class="enfant-nom">Élisabeth</div>
+        <div class="enfant-age d-lang fr">👧 Fille | AFPD Bukavu</div>
+        <div class="enfant-age d-lang en" style="display:none">👧 Girl | AFPD Bukavu</div>
+        <div class="enfant-reve d-lang fr">"Je veux être médecin pour soigner les enfants."</div>
+        <div class="enfant-reve d-lang en" style="display:none">"I want to be a doctor to heal children."</div>
+        <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
+        <span class="badge-statut badge-disponible d-lang en" style="display:none">✅ Available</span>
+        <button class="btn-parrainer-enfant" onclick="ouvrirModalEnfant('Élisabeth','Fille','Fille')"><span class="d-lang fr">Parrainer Élisabeth</span><span class="d-lang en" style="display:none">Sponsor Élisabeth</span></button>
+      </div>
+    </div>
+
+    <!-- GRÂCE -->
+    <div class="enfant-card">
+      <img src="IMG-20260508-WA0139.jpg" alt="Grâce AFPD" class="enfant-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="enfant-photo-placeholder" style="display:none">👧</div>
+      <div class="enfant-info">
+        <div class="enfant-nom">Grâce</div>
+        <div class="enfant-age d-lang fr">👧 Fille | AFPD Bukavu</div>
+        <div class="enfant-age d-lang en" style="display:none">👧 Girl | AFPD Bukavu</div>
+        <div class="enfant-reve d-lang fr">"Je rêve d'apporter de la joie autour de moi."</div>
+        <div class="enfant-reve d-lang en" style="display:none">"I dream of bringing joy to those around me."</div>
+        <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
+        <span class="badge-statut badge-disponible d-lang en" style="display:none">✅ Available</span>
+        <button class="btn-parrainer-enfant" onclick="ouvrirModalEnfant('Grâce','Fille','Fille')"><span class="d-lang fr">Parrainer Grâce</span><span class="d-lang en" style="display:none">Sponsor Grâce</span></button>
+      </div>
+    </div>
+
+    <!-- SAGESSE -->
+    <div class="enfant-card">
+      <img src="IMG-20260508-WA0146.jpg" alt="Sagesse AFPD" class="enfant-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="enfant-photo-placeholder" style="display:none">👦</div>
+      <div class="enfant-info">
+        <div class="enfant-nom">Sagesse</div>
+        <div class="enfant-age d-lang fr">👦 Garçon | AFPD Bukavu</div>
+        <div class="enfant-age d-lang en" style="display:none">👦 Boy | AFPD Bukavu</div>
+        <div class="enfant-reve d-lang fr">"Je veux être fort et protéger ma famille."</div>
+        <div class="enfant-reve d-lang en" style="display:none">"I want to be strong and protect my family."</div>
+        <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
+        <span class="badge-statut badge-disponible d-lang en" style="display:none">✅ Available</span>
+        <button class="btn-parrainer-enfant" onclick="ouvrirModalEnfant('Sagesse','Garçon','Garçon')"><span class="d-lang fr">Parrainer Sagesse</span><span class="d-lang en" style="display:none">Sponsor Sagesse</span></button>
+      </div>
+    </div>
+
+    <!-- ROSINE -->
+    <div class="enfant-card">
+      <img src="IMG-20260508-WA0125.jpg" alt="Rosine AFPD" class="enfant-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="enfant-photo-placeholder" style="display:none">👧</div>
+      <div class="enfant-info">
+        <div class="enfant-nom">Rosine</div>
+        <div class="enfant-age d-lang fr">👧 Fille | AFPD Bukavu</div>
+        <div class="enfant-age d-lang en" style="display:none">👧 Girl | AFPD Bukavu</div>
+        <div class="enfant-reve d-lang fr">"Je veux étudier et rendre ma famille fière."</div>
+        <div class="enfant-reve d-lang en" style="display:none">"I want to study and make my family proud."</div>
+        <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
+        <span class="badge-statut badge-disponible d-lang en" style="display:none">✅ Available</span>
+        <button class="btn-parrainer-enfant" onclick="ouvrirModalEnfant('Rosine','Fille','Fille')"><span class="d-lang fr">Parrainer Rosine</span><span class="d-lang en" style="display:none">Sponsor Rosine</span></button>
+      </div>
+    </div>
+
+    <!-- JUNIOR -->
+    <div class="enfant-card">
+      <img src="IMG-20260508-WA0133.jpg" alt="Junior AFPD" class="enfant-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="enfant-photo-placeholder" style="display:none">👦</div>
+      <div class="enfant-info">
+        <div class="enfant-nom">Junior</div>
+        <div class="enfant-age d-lang fr">👦 Garçon | AFPD Bukavu</div>
+        <div class="enfant-age d-lang en" style="display:none">👦 Boy | AFPD Bukavu</div>
+        <div class="enfant-reve d-lang fr">"Je veux être footballeur et rendre fière ma famille."</div>
+        <div class="enfant-reve d-lang en" style="display:none">"I want to be a footballer and make my family proud."</div>
+        <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
+        <span class="badge-statut badge-disponible d-lang en" style="display:none">✅ Available</span>
+        <button class="btn-parrainer-enfant" onclick="ouvrirModalEnfant('Junior','Garçon','Garçon')"><span class="d-lang fr">Parrainer Junior</span><span class="d-lang en" style="display:none">Sponsor Junior</span></button>
+      </div>
+    </div>
+
+    <!-- IMMACULÉE -->
+    <div class="enfant-card">
+      <img src="IMG-20260508-WA0110.jpg" alt="Immaculée AFPD" class="enfant-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="enfant-photo-placeholder" style="display:none">👧</div>
+      <div class="enfant-info">
+        <div class="enfant-nom">Immaculée</div>
+        <div class="enfant-age d-lang fr">👧 Fille | AFPD Bukavu</div>
+        <div class="enfant-age d-lang en" style="display:none">👧 Girl | AFPD Bukavu</div>
+        <div class="enfant-reve d-lang fr">"Je veux être infirmière pour aider les malades."</div>
+        <div class="enfant-reve d-lang en" style="display:none">"I want to be a nurse to help sick people."</div>
+        <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
+        <span class="badge-statut badge-disponible d-lang en" style="display:none">✅ Available</span>
+        <button class="btn-parrainer-enfant" onclick="ouvrirModalEnfant('Immaculée','Fille','Fille')"><span class="d-lang fr">Parrainer Immaculée</span><span class="d-lang en" style="display:none">Sponsor Immaculée</span></button>
+      </div>
+    </div>
+
+    <!-- EKIMA -->
+    <div class="enfant-card">
+      <img src="IMG-20260508-WA0082.jpg" alt="Ekima AFPD" class="enfant-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="enfant-photo-placeholder" style="display:none">👦</div>
+      <div class="enfant-info">
+        <div class="enfant-nom">Ekima</div>
+        <div class="enfant-age d-lang fr">👦 Garçon | AFPD Bukavu</div>
+        <div class="enfant-age d-lang en" style="display:none">👦 Boy | AFPD Bukavu</div>
+        <div class="enfant-reve d-lang fr">"Je veux devenir quelqu'un de grand malgré tout."</div>
+        <div class="enfant-reve d-lang en" style="display:none">"I want to become someone great despite everything."</div>
+        <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
+        <span class="badge-statut badge-disponible d-lang en" style="display:none">✅ Available</span>
+        <button class="btn-parrainer-enfant" onclick="ouvrirModalEnfant('Ekima','Garçon','Garçon')"><span class="d-lang fr">Parrainer Ekima</span><span class="d-lang en" style="display:none">Sponsor Ekima</span></button>
+      </div>
+    </div>
+
+    <!-- ROSETTE -->
+    <div class="enfant-card">
+      <img src="IMG-20260508-WA0131.jpg" alt="Rosette AFPD" class="enfant-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="enfant-photo-placeholder" style="display:none">👧</div>
+      <div class="enfant-info">
+        <div class="enfant-nom">Rosette</div>
+        <div class="enfant-age d-lang fr">👧 Fille | AFPD Bukavu</div>
+        <div class="enfant-age d-lang en" style="display:none">👧 Girl | AFPD Bukavu</div>
+        <div class="enfant-reve d-lang fr">"Je rêve d'un avenir meilleur pour ma famille."</div>
+        <div class="enfant-reve d-lang en" style="display:none">"I dream of a better future for my family."</div>
+        <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
+        <span class="badge-statut badge-disponible d-lang en" style="display:none">✅ Available</span>
+        <button class="btn-parrainer-enfant" onclick="ouvrirModalEnfant('Rosette','Fille','Fille')"><span class="d-lang fr">Parrainer Rosette</span><span class="d-lang en" style="display:none">Sponsor Rosette</span></button>
+      </div>
+    </div>
+
+    <!-- + autres enfants -->
+    <div class="enfant-card" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);display:flex;align-items:center;justify-content:center;min-height:320px;">
+      <div style="text-align:center;padding:20px;">
+        <div style="font-size:3rem;margin-bottom:15px;">👶</div>
+        <div style="font-size:1.5rem;font-weight:800;color:var(--vert);" class="d-lang fr">+ 94 autres enfants</div>
+        <div style="font-size:1.5rem;font-weight:800;color:var(--vert);" class="d-lang en" style="display:none">+ 94 more children</div>
+        <p style="font-size:0.9rem;color:#555;margin:10px 0 15px;" class="d-lang fr">Tous ont besoin d'un parrain. Contactez-nous pour voir tous les profils.</p>
+        <p style="font-size:0.9rem;color:#555;margin:10px 0 15px;" class="d-lang en" style="display:none">All need a sponsor. Contact us to see all profiles.</p>
+        <a href="https://wa.me/243998440006" target="_blank" style="background:var(--vert);color:#fff;padding:10px 20px;border-radius:20px;text-decoration:none;font-weight:700;font-size:0.9rem;">
+          <span class="d-lang fr">Voir tous les enfants</span>
+          <span class="d-lang en" style="display:none">See all children</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ═══════════════════════════════════════════
+     TÉMOIGNAGES — VERSION CORRIGÉE ET HONNÊTE
+     ═══════════════════════════════════════════ -->
+<section class="temoignages">
+
+  <h2 class="d-lang fr">Un Témoin Oculaire Témoigne</h2>
+  <h2 class="d-lang en" style="display:none">An Eyewitness Testifies</h2>
+
+  <p class="sous-titre d-lang fr">Voici le témoignage de quelqu'un qui a été sur place. D'autres suivront.</p>
+  <p class="sous-titre d-lang en" style="display:none">Here is the testimony of someone who was there. More will follow.</p>
+
+  <div class="temoignages-grid">
+
+    <!-- Témoignage de Joule — VRAI -->
+    <div class="temoignage-principal">
+      <p class="d-lang fr">
+        "En novembre 2024, j'ai passé un mois à Bukavu auprès de l'AFPD. J'ai vu de mes propres yeux ces enfants orphelins pris en charge avec amour par Sifa Matchara Immaculée. Quelques mois plus tard, la guerre entre le M23 et les forces armées gouvernementales congolaises (FARDC) a éclaté en février 2025 — et Sifa est restée, refusant d'abandonner ces enfants malgré tout. Je témoigne personnellement de l'authenticité et du dévouement extraordinaire de cette organisation."
+      </p>
+      <p class="d-lang en" style="display:none">
+        "In November 2024, I spent one month in Bukavu with AFPD. I saw with my own eyes these orphaned children cared for with love by Sifa Matchara Immaculée. Months later, the war between M23 rebels and the Congolese government armed forces (FARDC) broke out in February 2025 — and Sifa stayed, refusing to abandon these children no matter what. I personally testify to the authenticity and extraordinary dedication of this organization."
+      </p>
+      <div class="auteur">
+        <span>— Joule Musuwa, Éducateur bilingue, Saint-Georges de Beauce, Canada 🇨🇦</span>
+        <span class="auteur-badge d-lang fr">Témoin direct</span>
+        <span class="auteur-badge d-lang en" style="display:none">Direct witness</span>
+      </div>
+    </div>
+
+    <!-- Invitation futurs témoins -->
+    <div class="temoignage-invite">
+      <div class="invite-icon">✍️</div>
+      <h4 class="d-lang fr">Votre témoignage ici</h4>
+      <h4 class="d-lang en" style="display:none">Your testimony here</h4>
+      <p class="d-lang fr">
+        Devenez parrain et partagez votre expérience. Votre témoignage encouragera d'autres personnes à aider ces 105 enfants.
+      </p>
+      <p class="d-lang en" style="display:none">
+        Become a sponsor and share your experience. Your testimony will encourage others to help these 105 children.
+      </p>
+      <a href="https://wa.me/243998440006?text=Bonjour%20AFPD%2C%20je%20souhaite%20parrainer%20un%20enfant" target="_blank" class="btn-temoigner">
+        <span class="d-lang fr">Je commence à parrainer →</span>
+        <span class="d-lang en" style="display:none">I start sponsoring →</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FORMULAIRE -->
+<section class="formulaire-section" id="formulaire">
+  <div class="section-title" style="padding-top:30px">
+    <h2 class="d-lang fr">Devenez Parrain Maintenant</h2>
+    <h2 class="d-lang en" style="display:none">Become a Sponsor Now</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="form-container">
+    <h3 class="d-lang fr">📋 Formulaire de Parrainage</h3>
+    <h3 class="d-lang en" style="display:none">📋 Sponsorship Form</h3>
+    <p class="d-lang fr">Remplissez ce formulaire et nous vous contacterons sous 48 heures.</p>
+    <p class="d-lang en" style="display:none">Fill this form and we will contact you within 48 hours.</p>
+
+    <form id="formParrainage" onsubmit="soumettreFormulaire(event)">
+      <div class="form-group">
+        <label class="d-lang fr">👤 Votre Nom Complet *</label>
+        <label class="d-lang en" style="display:none">👤 Your Full Name *</label>
+        <input type="text" id="nom" placeholder="Ex: Jean Dupont" required>
+      </div>
+      <div class="form-group">
+        <label class="d-lang fr">📧 Email *</label>
+        <label class="d-lang en" style="display:none">📧 Email *</label>
+        <input type="email" id="email" placeholder="votre@email.com" required>
+      </div>
+      <div class="form-group">
+        <label class="d-lang fr">📱 WhatsApp / Téléphone</label>
+        <label class="d-lang en" style="display:none">📱 WhatsApp / Phone</label>
+        <input type="tel" id="tel" placeholder="+1 234 567 8900">
+      </div>
+      <div class="form-group">
+        <label class="d-lang fr">🌍 Pays de résidence *</label>
+        <label class="d-lang en" style="display:none">🌍 Country of residence *</label>
+        <input type="text" id="pays" placeholder="Ex: Canada, France, Belgique..." required>
+      </div>
+      <div class="form-group">
+        <label class="d-lang fr">💛 Niveau de parrainage souhaité *</label>
+        <label class="d-lang en" style="display:none">💛 Desired sponsorship level *</label>
+        <select id="niveau" required>
+          <option value="">-- Choisissez --</option>
+          <option value="ami">🌱 Ami de l'Enfant — $10/mois</option>
+          <option value="protecteur">💛 Protecteur — $30/mois (Recommandé)</option>
+          <option value="bienfaiteur">🌟 Bienfaiteur — $50/mois</option>
+          <option value="grand">👑 Grand Donateur — $100+/mois</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="d-lang fr">💳 Mode de paiement préféré</label>
+        <label class="d-lang en" style="display:none">💳 Preferred payment method</label>
+        <select id="paiement">
+          <option value="worldremit">🌍 WorldRemit (Recommandé Canada)</option>
+          <option value="taptap">📲 TapTap Send (Sans frais Canada)</option>
+          <option value="mpesa">💚 M-Pesa</option>
+          <option value="autre">Autre / Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="d-lang fr">👶 Enfant à parrainer (optionnel)</label>
+        <label class="d-lang en" style="display:none">👶 Child to sponsor (optional)</label>
+        <select id="enfant">
+          <option value="">-- Pas de préférence --</option>
+          <option value="espoir">Espoir M. (5 ans, Garçon)</option>
+          <option value="grace">Grâce K. (8 ans, Fille)</option>
+          <option value="amani">Amani B. (10 ans, Garçon)</option>
+          <option value="joie">Joie N. (7 ans, Fille)</option>
+          <option value="lumiere">Lumière T. (12 ans, Fille)</option>
+          <option value="victoire">Victoire M. (9 ans, Fille)</option>
+          <option value="fidele">Fidèle K. (6 ans, Garçon)</option>
+          <option value="autre">Un autre enfant</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="d-lang fr">💬 Message (optionnel)</label>
+        <label class="d-lang en" style="display:none">💬 Message (optional)</label>
+        <textarea id="message" rows="3" placeholder="Votre message pour l'équipe AFPD..."></textarea>
+      </div>
+      <button type="submit" class="btn-submit">
+        <span class="d-lang fr">✅ Envoyer ma Demande de Parrainage</span>
+        <span class="d-lang en" style="display:none">✅ Send My Sponsorship Request</span>
+      </button>
+    </form>
+
+    <div class="contact-direct">
+      <p class="d-lang fr"><strong>Ou contactez-nous directement :</strong></p>
+      <p class="d-lang en" style="display:none"><strong>Or contact us directly:</strong></p>
+      <a href="https://wa.me/243998440006?text=Bonjour%20AFPD%2C%20je%20souhaite%20parrainer%20un%20enfant" target="_blank">
+        <i class="fab fa-whatsapp"></i> WhatsApp AFPD
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <strong>AFPD Bukavu</strong> — Action de Femmes pour la Paix et le Développement</p>
+  <p style="margin-top:8px;">Ibanda, Bukavu, Sud-Kivu, RDC | <a href="https://wa.me/243998440006">+243 998 440 006</a></p>
+  <p style="margin-top:8px;">
+    <a href="index.html" class="d-lang fr">← Retour à l'accueil</a>
+    <a href="index.html" class="d-lang en" style="display:none">← Back to home</a>
+  </p>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/243998440006?text=Bonjour%20AFPD%2C%20je%20souhaite%20parrainer%20un%20enfant" target="_blank" class="whatsapp-float">
+  <i class="fab fa-whatsapp fa-lg"></i>
+  <span class="d-lang fr">WhatsApp AFPD</span>
+  <span class="d-lang en" style="display:none">WhatsApp AFPD</span>
+</a>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalConfirm">
+  <div class="modal-box">
+    <button class="modal-close" onclick="fermerModal()">×</button>
+    <div style="font-size:3rem;margin-bottom:10px;">🎉</div>
+    <h3 class="d-lang fr">Merci pour votre intérêt !</h3>
+    <h3 class="d-lang en" style="display:none">Thank you for your interest!</h3>
+    <div class="modal-enfant-info" id="modalInfo"></div>
+    <p class="d-lang fr">L'équipe AFPD vous contactera sous <strong>48 heures</strong> pour finaliser votre parrainage.</p>
+    <p class="d-lang en" style="display:none">The AFPD team will contact you within <strong>48 hours</strong> to finalize your sponsorship.</p>
+    <a href="https://wa.me/243998440006?text=Bonjour%20AFPD%2C%20je%20souhaite%20parrainer%20un%20enfant" target="_blank"
+       style="display:inline-block;background:#25d366;color:#fff;padding:12px 25px;border-radius:25px;text-decoration:none;font-weight:700;margin-top:15px;">
+      <i class="fab fa-whatsapp"></i>
+      <span class="d-lang fr"> Confirmer sur WhatsApp</span>
+      <span class="d-lang en" style="display:none"> Confirm on WhatsApp</span>
+    </a>
+  </div>
+</div>
+
+<script>
+  let langActuelle = 'fr';
+
+  function toggleLang() {
+    langActuelle = langActuelle === 'fr' ? 'en' : 'fr';
+    const autre = langActuelle === 'fr' ? 'en' : 'fr';
+    document.querySelectorAll('.d-lang.' + langActuelle).forEach(el => el.style.display = '');
+    document.querySelectorAll('.d-lang.' + autre).forEach(el => el.style.display = 'none');
+    document.documentElement.lang = langActuelle;
+  }
+
+  function speakHero() {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const textes = {
+      fr: "Bienvenue sur la page de parrainage de l'orphelinat AFPD Bukavu. Nous accueillons 105 enfants orphelins et vulnérables à Ibanda, Bukavu, en République Démocratique du Congo. Suite à la guerre entre le M23 et les forces armées gouvernementales congolaises en 2025, nous faisons face à une urgence alimentaire grave. Votre parrainage mensuel, même de 10 dollars, peut nourrir, soigner et scolariser un enfant. Merci de nous aider.",
+      en: "Welcome to the AFPD Bukavu orphanage sponsorship page. We care for 105 orphaned and vulnerable children in Ibanda, Bukavu, Democratic Republic of Congo. Following the war between M23 rebels and the Congolese government armed forces in 2025, we face a serious food emergency. Your monthly sponsorship, even 10 dollars, can feed, heal and educate a child. Thank you for helping us."
+    };
+    const msg = new SpeechSynthesisUtterance(textes[langActuelle]);
+    msg.lang = langActuelle === 'fr' ? 'fr-FR' : 'en-US';
+    msg.rate = 0.9;
+    window.speechSynthesis.speak(msg);
+  }
+
+  function ouvrirModal(niveau, prix) {
+    const info = document.getElementById('modalInfo');
+    info.innerHTML = langActuelle === 'fr'
+      ? '<p><strong>Niveau choisi :</strong> ' + niveau + '</p><p><strong>Montant :</strong> ' + prix + '</p>'
+      : '<p><strong>Chosen level:</strong> ' + niveau + '</p><p><strong>Amount:</strong> ' + prix + '</p>';
+    document.getElementById('modalConfirm').classList.add('active');
+  }
+
+  function ouvrirModalEnfant(nom, age, genre) {
+    const info = document.getElementById('modalInfo');
+    info.innerHTML = langActuelle === 'fr'
+      ? '<p><strong>Enfant :</strong> ' + nom + '</p><p><strong>Âge :</strong> ' + age + ' | ' + genre + '</p><p><strong>Niveau suggéré :</strong> Protecteur ($30/mois)</p>'
+      : '<p><strong>Child:</strong> ' + nom + '</p><p><strong>Age:</strong> ' + age + ' | ' + genre + '</p><p><strong>Suggested level:</strong> Protector ($30/month)</p>';
+    document.getElementById('modalConfirm').classList.add('active');
+    document.getElementById('niveau').value = 'protecteur';
+    setTimeout(() => document.getElementById('formulaire').scrollIntoView({behavior:'smooth'}), 300);
+  }
+
+  function fermerModal() {
+    document.getElementById('modalConfirm').classList.remove('active');
+  }
+
+  function soumettreFormulaire(e) {
+    e.preventDefault();
+    const nom = document.getElementById('nom').value;
+    const email = document.getElementById('email').value;
+    const tel = document.getElementById('tel').value;
+    const pays = document.getElementById('pays').value;
+    const niveau = document.getElementById('niveau').value;
+    const paiement = document.getElementById('paiement').value;
+    const enfant = document.getElementById('enfant').value;
+    const msg = document.getElementById('message').value;
+    const niveauxLabels = {
+      ami: "Ami de l'Enfant ($10/mois)",
+      protecteur: "Protecteur ($30/mois)",
+      bienfaiteur: "Bienfaiteur ($50/mois)",
+      grand: "Grand Donateur ($100+/mois)"
+    };
+    const paiementLabels = {
+      worldremit: "WorldRemit",
+      taptap: "TapTap Send",
+      mpesa: "M-Pesa",
+      autre: "Autre"
+    };
+    const texteWA = encodeURIComponent(
+      "Bonjour AFPD Bukavu ! 👋\n\n" +
+      "Je souhaite devenir parrain/marraine.\n\n" +
+      "📋 MES INFORMATIONS :\n" +
+      "• Nom : " + nom + "\n" +
+      "• Email : " + email + "\n" +
+      "• Téléphone : " + (tel || 'Non fourni') + "\n" +
+      "• Pays : " + pays + "\n" +
+      "• Niveau : " + (niveauxLabels[niveau] || niveau) + "\n" +
+      "• Paiement : " + (paiementLabels[paiement] || paiement) + "\n" +
+      (enfant ? "• Enfant souhaité : " + enfant + "\n" : "") +
+      (msg ? "• Message : " + msg + "\n" : "") +
+      "\nMerci !"
+    );
+    window.open('https://wa.me/243998440006?text=' + texteWA, '_blank');
+    const info = document.getElementById('modalInfo');
+    info.innerHTML = '<p><strong>Nom :</strong> ' + nom + '</p><p><strong>Niveau :</strong> ' + (niveauxLabels[niveau] || niveau) + '</p>';
+    document.getElementById('modalConfirm').classList.add('active');
+  }
+
+  document.getElementById('modalConfirm').addEventListener('click', function(e) {
+    if (e.target === this) fermerModal();
+  });
+</script>
+</body>
+</html>
