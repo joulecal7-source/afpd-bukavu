@@ -1,155 +1,519 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" id="html-root">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORPHELINAT AFPD BUKAVU</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root { --primary: #2c7a7b; --secondary: #f6ad55; --accent-blue: #007bff; --danger-red: #d9534f; }
-        body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; color: #333; }
-        
-        /* HEADER AVEC PHOTO DES ENFANTS */
-        .hero { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('1775544952020.jpg'); 
-            height: 85vh; background-size: cover; background-position: center; color: white; 
-            display: flex; align-items: center; justify-content: center; text-align: center; 
-        }
-
-        /* ANIMATION PULSATION DU BANDEAU ROUGE */
-        @keyframes pulse-emergency {
-            0% { transform: scale(1); background-color: #d9534f; }
-            50% { transform: scale(1.02); background-color: #ff4d4d; }
-            100% { transform: scale(1); background-color: #d9534f; }
-        }
-
-        .emergency-bar { 
-            background-color: var(--danger-red); 
-            color: white; 
-            padding: 20px 0; 
-            text-align: center; 
-            font-weight: bold; 
-            font-size: 1.2rem;
-            animation: pulse-emergency 2s infinite ease-in-out;
-            border-bottom: 4px solid #b52b27;
-            position: relative;
-            z-index: 100;
-        }
-
-        .nav-btn-blue { background-color: var(--accent-blue) !important; color: white !important; border-radius: 20px; padding: 8px 20px !important; font-weight: bold; }
-        .section-title { color: var(--primary); font-weight: bold; margin-bottom: 40px; }
-        .card-custom { border: none; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; height: 100%; border-top: 5px solid var(--primary); }
-        
-        .btn-whatsapp-float { 
-            position: fixed; bottom: 20px; right: 20px; background-color: #25d366; 
-            color: white; border-radius: 50px; padding: 12px 25px; z-index: 1000; 
-            text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orphelinat AFPD Bukavu — Action de Femmes pour la Paix et le Développement</title>
+  <meta name="description" content="L'orphelinat AFPD Bukavu accueille 30 enfants et soutient 75 autres à Ibanda, Bukavu, RDC. Faites un don ou devenez bénévole." />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root { --primary:#1a6b6c; --primary-light:#2c9b9c; --secondary:#f6ad55; --danger:#d9534f; --dark:#1a1a2e; --light-bg:#f0f7f7; }
+    * { scroll-behavior:smooth; }
+    body { font-family:'Poppins',sans-serif; background:#fff; color:#333; }
+    .emergency-bar { background:linear-gradient(90deg,#c0392b,#e74c3c,#c0392b); background-size:200% 100%; animation:slide-bg 3s linear infinite; color:white; padding:14px 20px; text-align:center; font-weight:700; font-size:1rem; position:relative; z-index:200; }
+    @keyframes slide-bg { 0%{background-position:0%} 100%{background-position:200%} }
+    .navbar { background:rgba(26,27,46,0.97) !important; padding:12px 0; position:sticky; top:0; z-index:100; }
+    .navbar-brand { color:#f6ad55 !important; font-weight:800; font-size:1.3rem; }
+    .nav-link { color:rgba(255,255,255,0.85) !important; font-weight:500; transition:color 0.2s; }
+    .nav-link:hover { color:#f6ad55 !important; }
+    .btn-lang { background:transparent; border:2px solid #f6ad55; color:#f6ad55; border-radius:20px; padding:4px 16px; font-weight:700; cursor:pointer; transition:all 0.2s; font-size:0.9rem; }
+    .btn-lang:hover { background:#f6ad55; color:#1a1a2e; }
+    .btn-donate-nav { background:#f6ad55; color:#1a1a2e; border:none; border-radius:20px; padding:6px 20px; font-weight:700; text-decoration:none; transition:all 0.2s; }
+    .btn-donate-nav:hover { background:#e8971e; color:#1a1a2e; }
+    .hero { background:linear-gradient(135deg,rgba(26,107,108,0.92),rgba(26,26,46,0.95),rgba(46,125,82,0.85)); min-height:92vh; display:flex; align-items:center; justify-content:center; text-align:center; color:white; position:relative; overflow:hidden; }
+    .hero::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(246,173,85,0.03) 40px,rgba(246,173,85,0.03) 80px); }
+    .hero-icon { font-size:5rem; margin-bottom:20px; animation:float 3s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    .hero h1 { font-size:3.5rem; font-weight:800; line-height:1.1; }
+    .hero h1 span { color:#f6ad55; }
+    .hero p { font-size:1.25rem; opacity:0.9; max-width:650px; margin:0 auto; }
+    .btn-hero-primary { background:#f6ad55; color:#1a1a2e; border:none; padding:14px 35px; border-radius:30px; font-weight:700; font-size:1.1rem; text-decoration:none; transition:all 0.3s; display:inline-block; }
+    .btn-hero-primary:hover { background:#e8971e; transform:translateY(-2px); color:#1a1a2e; }
+    .btn-hero-outline { background:transparent; color:white; border:2px solid white; padding:14px 35px; border-radius:30px; font-weight:700; font-size:1.1rem; text-decoration:none; transition:all 0.3s; display:inline-block; }
+    .btn-hero-outline:hover { background:white; color:#1a1a2e; transform:translateY(-2px); }
+    .stats-section { background:var(--primary); color:white; padding:50px 0; }
+    .stat-number { font-size:3.5rem; font-weight:800; color:#f6ad55; line-height:1; }
+    .stat-label { font-size:1rem; opacity:0.9; margin-top:5px; }
+    .section-pad { padding:80px 0; }
+    .section-title { color:var(--primary); font-weight:800; font-size:2rem; margin-bottom:15px; }
+    .section-subtitle { color:#666; font-size:1.1rem; margin-bottom:50px; }
+    .divider { width:60px; height:4px; background:#f6ad55; border-radius:2px; margin:15px auto 30px; }
+    .card-afpd { border:none; border-radius:16px; box-shadow:0 6px 25px rgba(0,0,0,0.08); transition:transform 0.3s,box-shadow 0.3s; height:100%; border-top:5px solid var(--primary); }
+    .card-afpd:hover { transform:translateY(-6px); box-shadow:0 12px 35px rgba(0,0,0,0.15); }
+    .btn-audio { background:none; border:1.5px solid var(--primary); color:var(--primary); border-radius:20px; padding:4px 14px; font-size:0.82rem; cursor:pointer; transition:all 0.2s; display:inline-flex; align-items:center; gap:5px; }
+    .btn-audio:hover,.btn-audio.playing { background:var(--primary); color:white; }
+    .urgence-box { background:linear-gradient(135deg,#fff5f5,#ffe8e8); border-left:6px solid var(--danger); border-radius:12px; padding:30px; margin-bottom:40px; }
+    .urgence-box h3 { color:var(--danger); font-weight:700; }
+    .need-item { display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid #f0d0d0; }
+    .need-item:last-child { border-bottom:none; }
+    .need-icon { font-size:1.5rem; }
+    .photo-placeholder { width:100%; border-radius:16px; background:linear-gradient(135deg,#e0f2f1,#b2dfdb,#e0f2f1); display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--primary); font-weight:600; text-align:center; padding:20px; border:2px dashed var(--primary-light); }
+    .photo-placeholder .ph-icon { font-size:4rem; margin-bottom:12px; opacity:0.6; }
+    .photo-placeholder .ph-text { font-size:0.85rem; opacity:0.7; }
+    .histoire-section { background:var(--light-bg); }
+    .quote-box { background:white; border-left:5px solid #f6ad55; border-radius:0 12px 12px 0; padding:20px 25px; font-style:italic; font-size:1.1rem; color:#555; box-shadow:0 3px 15px rgba(0,0,0,0.07); }
+    .timeline-item { position:relative; padding-left:30px; margin-bottom:30px; }
+    .timeline-item::before { content:''; position:absolute; left:0; top:8px; width:14px; height:14px; border-radius:50%; background:var(--primary); border:3px solid #f6ad55; }
+    .timeline-item::after { content:''; position:absolute; left:6px; top:22px; width:2px; height:calc(100% - 14px); background:#c8e6e6; }
+    .timeline-item:last-child::after { display:none; }
+    .gallery-placeholder { width:100%; height:220px; border-radius:12px; background:linear-gradient(135deg,#e0f2f1,#b2dfdb); display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--primary); border:2px dashed var(--primary-light); transition:transform 0.3s; }
+    .gallery-placeholder:hover { transform:scale(1.03); }
+    .gallery-placeholder .g-icon { font-size:2.5rem; margin-bottom:8px; opacity:0.6; }
+    .gallery-placeholder .g-label { font-size:0.78rem; font-weight:600; opacity:0.7; text-align:center; padding:0 10px; }
+    .gallery-item { overflow:hidden; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
+    .gallery-img { width:100%; height:220px; object-fit:cover; border-radius:12px; transition:transform 0.3s; cursor:pointer; display:block; }
+    .gallery-img:hover { transform:scale(1.04); }
+    #lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.92); z-index:9999; align-items:center; justify-content:center; cursor:pointer; }
+    #lightbox.active { display:flex; }
+    #lightbox img { max-width:92%; max-height:90vh; border-radius:8px; box-shadow:0 0 40px rgba(0,0,0,0.5); }
+    .don-section { background:linear-gradient(135deg,var(--primary),var(--primary-light)); color:white; }
+    .don-card { background:rgba(255,255,255,0.12); border:2px solid rgba(255,255,255,0.3); border-radius:16px; padding:25px; text-align:center; transition:all 0.3s; }
+    .don-card:hover { background:rgba(255,255,255,0.25); transform:translateY(-4px); }
+    .don-amount { font-size:2rem; font-weight:800; color:#f6ad55; }
+    .don-desc { font-size:0.9rem; opacity:0.9; }
+    .payment-box { background:rgba(255,255,255,0.1); border-radius:16px; padding:25px; border:1px solid rgba(255,255,255,0.2); }
+    .payment-method { display:flex; align-items:center; gap:12px; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.15); }
+    .payment-method:last-child { border-bottom:none; }
+    .payment-icon { font-size:1.8rem; }
+    .payment-badge { display:inline-block; background:#f6ad55; color:#1a1a2e; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:10px; margin-left:8px; vertical-align:middle; }
+    .parrainage-cta { background:linear-gradient(135deg,#fff9e6,#fff3cc); border:2px solid #f6ad55; border-radius:20px; padding:35px 30px; text-align:center; margin-top:40px; }
+    .parrainage-cta h4 { color:var(--dark); font-weight:800; font-size:1.4rem; margin-bottom:10px; }
+    .temoignage-section { background:var(--primary); color:white; padding:70px 0; }
+    .temoignage-principal { background:rgba(255,255,255,0.15); border:2px solid #f6ad55; border-radius:20px; padding:35px 30px; position:relative; max-width:750px; margin:0 auto 25px; }
+    .temoignage-principal::before { content:'"'; position:absolute; top:-15px; left:25px; font-size:5rem; color:#f6ad55; line-height:1; font-family:Georgia,serif; opacity:0.6; }
+    .temoignage-principal p { font-style:italic; font-size:1rem; line-height:1.8; margin-bottom:20px; margin-top:10px; }
+    .auteur { font-weight:700; font-size:0.9rem; color:#f6ad55; }
+    .auteur-badge { display:inline-block; background:#f6ad55; color:#1a1a2e; font-size:0.7rem; padding:3px 10px; border-radius:20px; font-weight:700; margin-left:8px; }
+    .temoignage-invite { background:rgba(255,255,255,0.08); border:2px dashed rgba(255,255,255,0.3); border-radius:20px; padding:30px; text-align:center; max-width:500px; margin:0 auto; }
+    .btn-temoigner { background:#f6ad55; color:#1a1a2e; border:none; border-radius:25px; padding:10px 22px; font-weight:700; font-size:0.88rem; cursor:pointer; text-decoration:none; display:inline-block; }
+    .benevole-section { background:#fafafa; }
+    .skill-tag { display:inline-block; background:var(--light-bg); color:var(--primary); border:1px solid var(--primary); border-radius:20px; padding:5px 15px; margin:4px; font-size:0.85rem; font-weight:600; }
+    .transparence-item { background:white; border-radius:12px; padding:20px; box-shadow:0 3px 15px rgba(0,0,0,0.06); border-left:4px solid var(--primary); }
+    .contact-section { background:var(--dark); color:white; }
+    .contact-item { display:flex; align-items:flex-start; gap:15px; margin-bottom:20px; }
+    .contact-icon { font-size:1.4rem; color:#f6ad55; margin-top:2px; }
+    footer { background:#111; color:rgba(255,255,255,0.6); padding:25px 0; text-align:center; }
+    .whatsapp-float { position:fixed; bottom:25px; right:25px; background:#25d366; color:white; border-radius:50px; padding:12px 22px; z-index:999; text-decoration:none; font-weight:700; box-shadow:0 4px 20px rgba(0,0,0,0.3); display:flex; align-items:center; gap:8px; transition:all 0.3s; }
+    .whatsapp-float:hover { background:#1da851; color:white; transform:scale(1.05); }
+    @media (max-width:768px) { .hero h1{font-size:2.2rem} .stat-number{font-size:2.5rem} }
+  </style>
 </head>
 <body>
 
-<a href="https://wa.me/243998440006" class="btn-whatsapp-float" target="_blank">
-    <i class="fab fa-whatsapp"></i> WhatsApp Sifa
-</a>
+<!-- EMERGENCY BAR -->
+<div class="emergency-bar">
+  <span class="d-lang fr">
+    <button class="btn-audio me-2" style="border-color:white;color:white" onclick="speakText(this,'urgence-fr')"><i class="fas fa-volume-up"></i></button>
+    <span id="urgence-fr">⚠️ URGENCE : Suite à la guerre entre le M23 et les forces armées congolaises (FARDC) — partenaires pillés en 2025, nous luttons pour nourrir 30 résidents et 75 enfants externes. Votre aide est vitale.</span>
+  </span>
+  <span class="d-lang en" style="display:none">
+    <button class="btn-audio me-2" style="border-color:white;color:white" onclick="speakText(this,'urgence-en')"><i class="fas fa-volume-up"></i></button>
+    <span id="urgence-en">⚠️ EMERGENCY: Following the war between M23 and the Congolese armed forces (FARDC) — partners looted in 2025, struggling to feed 30 residents and 75 external children. Your help is vital.</span>
+  </span>
+</div>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-    <div class="container">
-        <a class="navbar-brand fw-bold text-primary" href="index.html">AFPD BUKAVU</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto align-items-center">
-                <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link nav-btn-blue" href="histoire.html">Notre Histoire</a></li>
-                <li class="nav-item"><a class="nav-link" href="enfants.html">Nos 105 Enfants</a></li>
-                <li class="nav-item"><a class="nav-link" href="galerie.html">Galerie</a></li>
-                <li class="nav-item"><a class="nav-link" href="transparence.html">Transparence</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-            </ul>
-        </div>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#accueil"><i class="fas fa-dove me-2"></i>AFPD BUKAVU</a>
+    <button class="navbar-toggler border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon" style="filter:invert(1)"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="#accueil"><span class="d-lang fr">Accueil</span><span class="d-lang en" style="display:none">Home</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="#histoire"><span class="d-lang fr">Notre Histoire</span><span class="d-lang en" style="display:none">Our Story</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="#enfants"><span class="d-lang fr">Nos Enfants</span><span class="d-lang en" style="display:none">Our Children</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="#galerie"><span class="d-lang fr">Galerie</span><span class="d-lang en" style="display:none">Gallery</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="parrainage.html" style="color:#f6ad55 !important;font-weight:700"><span class="d-lang fr">💛 Parrainer</span><span class="d-lang en" style="display:none">💛 Sponsor</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="#transparence"><span class="d-lang fr">Transparence</span><span class="d-lang en" style="display:none">Transparency</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-3">
+        <button class="btn-lang" onclick="toggleLang()" id="langBtn">EN</button>
+        <a href="#dons" class="btn-donate-nav"><span class="d-lang fr">💛 Faire un Don</span><span class="d-lang en" style="display:none">💛 Donate</span></a>
+      </div>
     </div>
+  </div>
 </nav>
 
-<header class="hero">
-    <div class="container">
-        <h1 class="display-1 fw-bold mb-0">ORPHELINAT AFPD</h1>
-        <h2 class="display-4 fw-bold mb-4" style="color: var(--secondary);">BUKAVU</h2>
-        <p class="lead fs-3 mb-5">Action de Femmes pour la Paix et le Développement</p>
-        <div>
-            <a href="#don" class="btn btn-warning btn-lg fw-bold px-5 py-3 shadow">FAIRE UN DON</a>
-            <a href="#benevole" class="btn btn-outline-light btn-lg ms-3 px-5 py-3">DEVENIR BÉNÉVOLE</a>
+<!-- HERO -->
+<section class="hero" id="accueil">
+  <div class="container" style="position:relative;z-index:2">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <div class="hero-icon">🕊️</div>
+        <p class="text-uppercase fw-bold mb-3" style="color:#f6ad55;letter-spacing:3px;font-size:0.9rem">
+          <span class="d-lang fr">Orphelinat · Ibanda, Bukavu, RDC</span>
+          <span class="d-lang en" style="display:none">Orphanage · Ibanda, Bukavu, DRC</span>
+        </p>
+        <h1 class="mb-4">
+          <span class="d-lang fr">Chaque enfant mérite<br/><span>amour et avenir</span></span>
+          <span class="d-lang en" style="display:none">Every child deserves<br/><span>love and a future</span></span>
+        </h1>
+        <p class="mb-5">
+          <span class="d-lang fr">Action de Femmes pour la Paix et le Développement — 30 enfants hébergés, 75 soutenus, une seule mission : protéger l'avenir de Bukavu.</span>
+          <span class="d-lang en" style="display:none">Action of Women for Peace and Development — 30 children housed, 75 supported, one mission: protect the future of Bukavu.</span>
+        </p>
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
+          <a href="#dons" class="btn-hero-primary"><span class="d-lang fr">💛 Faire un Don</span><span class="d-lang en" style="display:none">💛 Make a Donation</span></a>
+          <a href="parrainage.html" class="btn-hero-primary" style="background:white;color:#1a1a2e"><span class="d-lang fr">👶 Parrainer un Enfant</span><span class="d-lang en" style="display:none">👶 Sponsor a Child</span></a>
+          <a href="#benevole" class="btn-hero-outline"><span class="d-lang fr">🤝 Devenir Bénévole</span><span class="d-lang en" style="display:none">🤝 Become a Volunteer</span></a>
         </div>
+      </div>
     </div>
-</header>
-
-<section class="emergency-bar">
-    <div class="container">
-        <i class="fas fa-exclamation-circle fa-lg me-2"></i> 
-        <strong>URGENCE FAMINE :</strong> Nos partenaires pillés en 2025, nous luttons pour nourrir nos 30 résidents et 75 externes.
-    </div>
+  </div>
 </section>
 
-<section class="container py-5">
-    <div class="text-center mb-5">
-        <h2 class="section-title">Notre Impact : 105 Vies à Protéger</h2>
-        <p class="lead">Basés à Ibanda, nous refusons de laisser la faim décider de l'avenir de nos enfants.</p>
-    </div>
-
+<!-- STATS -->
+<section class="stats-section">
+  <div class="container">
     <div class="row g-4 text-center">
+      <div class="col-6 col-md-3"><div class="stat-number">30</div><div class="stat-label"><span class="d-lang fr">Enfants Hébergés</span><span class="d-lang en" style="display:none">Resident Children</span></div></div>
+      <div class="col-6 col-md-3"><div class="stat-number">75</div><div class="stat-label"><span class="d-lang fr">Enfants Soutenus</span><span class="d-lang en" style="display:none">Supported Children</span></div></div>
+      <div class="col-6 col-md-3"><div class="stat-number">2018</div><div class="stat-label"><span class="d-lang fr">Année de Fondation</span><span class="d-lang en" style="display:none">Year Founded</span></div></div>
+      <div class="col-6 col-md-3"><div class="stat-number">100%</div><div class="stat-label"><span class="d-lang fr">Dons aux Enfants</span><span class="d-lang en" style="display:none">Donations to Children</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- URGENCE -->
+<section class="section-pad" id="urgence">
+  <div class="container">
+    <div class="urgence-box">
+      <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <h3 class="mb-0"><span class="d-lang fr">🚨 Guerre M23 vs FARDC — Urgence 2025</span><span class="d-lang en" style="display:none">🚨 M23 vs FARDC War — Emergency 2025</span></h3>
+        <button class="btn-audio" onclick="speakText(this,'urgence-detail-fr')"><i class="fas fa-volume-up"></i> <span class="d-lang fr">Écouter</span><span class="d-lang en" style="display:none">Listen</span></button>
+      </div>
+      <span id="urgence-detail-fr" style="display:none">En 2025, la guerre entre le M23 et les forces armées gouvernementales congolaises, les FARDC, a dévasté Bukavu. Nos bienfaiteurs locaux ont tout perdu. Nous avons choisi de rester à Ibanda pour protéger nos 105 enfants.</span>
+      <span id="urgence-detail-en" style="display:none">In 2025, the war between M23 and the Congolese government armed forces, the FARDC, devastated Bukavu. Our local benefactors lost everything. We chose to stay in Ibanda to protect our 105 children.</span>
+      <p class="mb-3">
+        <span class="d-lang fr">La guerre entre le <strong>M23 et les FARDC</strong> a ruiné nos bienfaiteurs qui finançaient 70% de l'orphelinat. L'AFPD a choisi de <strong>rester à Ibanda</strong>. Voici nos besoins urgents :</span>
+        <span class="d-lang en" style="display:none">The war between <strong>M23 and the FARDC</strong> ruined our benefactors who funded 70% of the orphanage. AFPD chose to <strong>stay in Ibanda</strong>. Here are our urgent needs:</span>
+      </p>
+      <div class="row g-3">
         <div class="col-md-6">
-            <div class="card card-custom p-4">
-                <div class="display-4 fw-bold text-primary mb-2">30</div>
-                <h4>Enfants Hébergés</h4>
-                <p>Logés, nourris, scolarisés et suivis médicalement 24h/24 au sein de l'orphelinat. Ils reçoivent un encadrement socio-culturel complet.</p>
-            </div>
+          <div class="need-item"><span class="need-icon">🌽</span><span class="d-lang fr">Farine de maïs, riz et haricots</span><span class="d-lang en" style="display:none">Corn flour, rice and beans</span></div>
+          <div class="need-item"><span class="need-icon">🍼</span><span class="d-lang fr">Lait pour les nourrissons</span><span class="d-lang en" style="display:none">Milk for infants</span></div>
         </div>
         <div class="col-md-6">
-            <div class="card card-custom p-4" style="border-top-color: var(--secondary);">
-                <div class="display-4 fw-bold text-warning mb-2">75</div>
-                <h4>Enfants Soutenus</h4>
-                <p>Enfants externes bénéficiant de notre programme de lutte contre la malnutrition et d'un accès aux soins médicaux d'urgence.</p>
-            </div>
+          <div class="need-item"><span class="need-icon">📚</span><span class="d-lang fr">Frais de scolarité</span><span class="d-lang en" style="display:none">School fees</span></div>
+          <div class="need-item"><span class="need-icon">💊</span><span class="d-lang fr">Médicaments de base</span><span class="d-lang en" style="display:none">Basic medicines</span></div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 
-<section id="benevole" class="py-5" style="background-color: #2c7a7b; color: white;">
-    <div class="container text-center">
-        <h2 class="fw-bold mb-4">Devenez Bénévole (Virtuel ou Physique)</h2>
-        <p class="fs-5 mb-4">Nous avons besoin de vos compétences pour rendre ces enfants autonomes. Apprenez-leur un métier !</p>
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <p>Que vous soyez expert en informatique, artisan, enseignant ou artiste, votre savoir est une richesse. Contactez-nous pour organiser des sessions de mentorat, même à distance.</p>
-                <a href="https://wa.me/243998440006" class="btn btn-outline-light btn-lg mt-3 px-5">Je propose mes services</a>
-            </div>
-        </div>
+<!-- HISTOIRE -->
+<section class="section-pad histoire-section" id="histoire">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title"><span class="d-lang fr">Le Cœur d'une Mère, le Combat d'une Vie</span><span class="d-lang en" style="display:none">A Mother's Heart, a Lifetime of Fight</span></h2>
+      <div class="divider"></div>
+      <button class="btn-audio" onclick="speakText(this,'histoire-text-fr')"><i class="fas fa-volume-up"></i> <span class="d-lang fr">Écouter l'histoire</span><span class="d-lang en" style="display:none">Listen to the story</span></button>
+      <span id="histoire-text-fr" style="display:none">Sifa Matchara Immaculée a grandi dans une famille nombreuse où le partage était la règle d'or. En 2018, elle fonde l'AFPD pour accueillir les orphelins de Bukavu. Quand la guerre entre le M23 et les FARDC a éclaté en février 2025, toutes les grandes organisations ont évacué. Sifa, elle, est restée avec ses 105 enfants.</span>
+      <span id="histoire-text-en" style="display:none">Sifa Matchara Immaculée grew up in a large family where sharing was the golden rule. In 2018, she founded AFPD to welcome orphans from Bukavu. When the war between M23 and the FARDC broke out in February 2025, all major organizations evacuated. Sifa stayed with her 105 children.</span>
     </div>
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="quote-box mb-4">
+          <span class="d-lang fr">"La vie d'un enfant vaut mieux que tout l'or du monde."</span>
+          <span class="d-lang en" style="display:none">"A child's life is worth more than all the gold in the world."</span>
+          <div class="mt-2 fw-bold" style="color:var(--primary)">— Sifa Matchara Immaculée</div>
+        </div>
+        <div class="timeline-item">
+          <h5 class="fw-bold" style="color:var(--primary)"><span class="d-lang fr">Un Héritage d'Amour</span><span class="d-lang en" style="display:none">A Legacy of Love</span></h5>
+          <p><span class="d-lang fr">Sifa a grandi dans une famille nombreuse. Sa mère, surnommée « la maman de plusieurs », lui a transmis une passion pour les plus vulnérables.</span><span class="d-lang en" style="display:none">Sifa grew up in a large family. Her mother, nicknamed "the mother of many", passed on a passion for the most vulnerable.</span></p>
+        </div>
+        <div class="timeline-item">
+          <h5 class="fw-bold" style="color:var(--primary)"><span class="d-lang fr">La Création de l'AFPD (2018)</span><span class="d-lang en" style="display:none">The Creation of AFPD (2018)</span></h5>
+          <p><span class="d-lang fr">En 2018, Sifa crée l'AFPD, un organisme communautaire au service des orphelins de Bukavu. Aujourd'hui <strong>30 enfants</strong> sont hébergés (1 mois à 17 ans) et <strong>75 autres</strong> soutenus en familles d'accueil.</span><span class="d-lang en" style="display:none">In 2018, Sifa founded AFPD. Today <strong>30 children</strong> are housed (1 month to 17 years) and <strong>75 others</strong> supported in foster families.</span></p>
+        </div>
+        <div class="timeline-item">
+          <h5 class="fw-bold" style="color:#d9534f"><span class="d-lang fr">Résilience — Guerre M23 vs FARDC (2025)</span><span class="d-lang en" style="display:none">Resilience — M23 vs FARDC War (2025)</span></h5>
+          <p><span class="d-lang fr">En février 2025, même SOS Villages d'Enfants a dû évacuer ses 33 enfants vers le Rwanda. L'AFPD a choisi de <strong>rester à Ibanda</strong> — car pour ces enfants, nous sommes leur seule famille.</span><span class="d-lang en" style="display:none">In February 2025, even SOS Children's Villages evacuated its 33 children to Rwanda. AFPD chose to <strong>stay in Ibanda</strong> — because for these children, we are their only family.</span></p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="photo-placeholder" style="height:420px">
+          <div class="ph-icon">🏠</div>
+          <div class="fw-bold" style="font-size:1rem"><span class="d-lang fr">Photo de l'Orphelinat AFPD</span><span class="d-lang en" style="display:none">AFPD Orphanage Photo</span></div>
+          <div class="ph-text mt-2"><span class="d-lang fr">Ibanda, Bukavu, Sud-Kivu, RDC</span><span class="d-lang en" style="display:none">Ibanda, Bukavu, South Kivu, DRC</span></div>
+          <div class="ph-text mt-1 fst-italic"><span class="d-lang fr">📷 Photo à venir</span><span class="d-lang en" style="display:none">📷 Photo coming soon</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="don" class="py-5 bg-white">
-    <div class="container text-center">
-        <h2 class="section-title">Comment Nous Aider financièrement ?</h2>
-        <div class="row">
-            <div class="col-md-6 mx-auto">
-                <div class="card shadow p-4 border-0 bg-light">
-                    <p class="mb-2"><strong>Airtel Money :</strong> +243 998 440 006</p>
-                    <p class="mb-2"><strong>M-Pesa :</strong> +243 825 831 628</p>
-                    <p class="fw-bold text-primary">Titulaire : Sifa Matchara Immaculée</p>
-                    <hr>
-                    <p class="small text-muted italic">"La vie d'un enfant vaut mieux que tout l'or du monde."</p>
-                </div>
-            </div>
-        </div>
+<!-- NOS ENFANTS -->
+<section class="section-pad" id="enfants">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title"><span class="d-lang fr">Nos 105 Vies à Protéger</span><span class="d-lang en" style="display:none">105 Lives to Protect</span></h2>
+      <div class="divider"></div>
+      <button class="btn-audio mb-3" onclick="speakText(this,'enfants-text-fr')"><i class="fas fa-volume-up"></i> <span class="d-lang fr">Écouter</span><span class="d-lang en" style="display:none">Listen</span></button>
+      <span id="enfants-text-fr" style="display:none">L'orphelinat AFPD protège 105 enfants. 30 résidents logés nourris scolarisés et suivis médicalement 24 heures sur 24. 75 enfants externes en familles d'accueil bénéficient du programme anti-malnutrition.</span>
+      <span id="enfants-text-en" style="display:none">AFPD protects 105 children. 30 resident children housed, fed, schooled and medically monitored 24/7. 75 external children in foster families benefit from the anti-malnutrition program.</span>
     </div>
+    <div class="row g-4 mb-4">
+      <div class="col-md-6"><div class="card-afpd p-4 text-center h-100"><div style="font-size:3.5rem;color:var(--primary);font-weight:800">30</div><h4 class="fw-bold mt-2"><span class="d-lang fr">Enfants Hébergés</span><span class="d-lang en" style="display:none">Resident Children</span></h4><p class="text-muted"><span class="d-lang fr">Filles et garçons de 1 mois à 17 ans. Logés, nourris, scolarisés et suivis médicalement 24h/24.</span><span class="d-lang en" style="display:none">Girls and boys from 1 month to 17 years. Housed, fed, schooled and medically monitored 24/7.</span></p></div></div>
+      <div class="col-md-6"><div class="card-afpd p-4 text-center h-100"><div style="font-size:3.5rem;color:var(--primary);font-weight:800">75</div><h4 class="fw-bold mt-2"><span class="d-lang fr">Enfants Soutenus</span><span class="d-lang en" style="display:none">Supported Children</span></h4><p class="text-muted"><span class="d-lang fr">Enfants externes en familles d'accueil. Programme anti-malnutrition et accès aux soins d'urgence.</span><span class="d-lang en" style="display:none">External children in foster families. Anti-malnutrition program and emergency medical care.</span></p></div></div>
+    </div>
+    <div class="row g-4 mb-4">
+      <div class="col-md-3 col-6"><div class="card-afpd p-3 text-center"><div style="font-size:2rem">🍽️</div><div class="fw-bold mt-2"><span class="d-lang fr">Alimentation</span><span class="d-lang en" style="display:none">Nutrition</span></div><small class="text-muted"><span class="d-lang fr">3 repas/jour</span><span class="d-lang en" style="display:none">3 meals/day</span></small></div></div>
+      <div class="col-md-3 col-6"><div class="card-afpd p-3 text-center"><div style="font-size:2rem">📚</div><div class="fw-bold mt-2"><span class="d-lang fr">Scolarisation</span><span class="d-lang en" style="display:none">Education</span></div><small class="text-muted"><span class="d-lang fr">École assurée</span><span class="d-lang en" style="display:none">School provided</span></small></div></div>
+      <div class="col-md-3 col-6"><div class="card-afpd p-3 text-center"><div style="font-size:2rem">🏥</div><div class="fw-bold mt-2"><span class="d-lang fr">Santé</span><span class="d-lang en" style="display:none">Healthcare</span></div><small class="text-muted"><span class="d-lang fr">Suivi médical</span><span class="d-lang en" style="display:none">Medical follow-up</span></small></div></div>
+      <div class="col-md-3 col-6"><div class="card-afpd p-3 text-center"><div style="font-size:2rem">🎭</div><div class="fw-bold mt-2"><span class="d-lang fr">Épanouissement</span><span class="d-lang en" style="display:none">Development</span></div><small class="text-muted"><span class="d-lang fr">Activités culturelles</span><span class="d-lang en" style="display:none">Cultural activities</span></small></div></div>
+    </div>
+    <div class="parrainage-cta">
+      <h4><span class="d-lang fr">👶 Parrainez un enfant — dès $10/mois</span><span class="d-lang en" style="display:none">👶 Sponsor a child — from $10/month</span></h4>
+      <p><span class="d-lang fr">Choisissez un enfant à parrainer et recevez des nouvelles chaque mois. Votre parrainage couvre nourriture, soins et école.</span><span class="d-lang en" style="display:none">Choose a child to sponsor and receive monthly news. Your sponsorship covers food, healthcare and school.</span></p>
+      <a href="parrainage.html" class="btn-hero-primary" style="font-size:1rem;padding:12px 30px"><span class="d-lang fr">Voir les enfants à parrainer →</span><span class="d-lang en" style="display:none">See children to sponsor →</span></a>
+    </div>
+  </div>
 </section>
 
-<footer class="bg-dark text-white text-center py-4">
-    <p>© 2026 ORPHELINAT AFPD BUKAVU - Sud-Kivu, RDC</p>
+<!-- GALERIE -->
+<section class="section-pad" id="galerie" style="background:#f8f9fa">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title"><span class="d-lang fr">Galerie Photos</span><span class="d-lang en" style="display:none">Photo Gallery</span></h2>
+      <div class="divider"></div>
+      <p class="text-muted fst-italic" style="font-size:0.85rem"><span class="d-lang fr">📷 Photos officielles à venir — en attente des images de l'AFPD</span><span class="d-lang en" style="display:none">📷 Official photos coming soon — awaiting AFPD images</span></p>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-4 col-6 gallery-item">
+        <img src="1775535979283.jpg" alt="Distribution sacs scolaires AFPD Bukavu" class="gallery-img" onclick="openLightbox(this.src)" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder><div class=g-icon>🎒</div><div class=g-label>Distribution sacs scolaires</div></div>'" />
+      </div>
+      <div class="col-md-4 col-6 gallery-item">
+        <img src="1775536048971.jpg" alt="Enfants AFPD Bukavu" class="gallery-img" onclick="openLightbox(this.src)" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder><div class=g-icon>👧</div><div class=g-label>Enfants AFPD</div></div>'" />
+      </div>
+      <div class="col-md-4 col-6 gallery-item">
+        <img src="1775536092716.jpg" alt="Activités AFPD Bukavu" class="gallery-img" onclick="openLightbox(this.src)" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder><div class=g-icon>🎨</div><div class=g-label>Activités AFPD</div></div>'" />
+      </div>
+      <div class="col-md-4 col-6 gallery-item">
+        <img src="1775536136077.jpg" alt="Orphelinat AFPD Bukavu" class="gallery-img" onclick="openLightbox(this.src)" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder><div class=g-icon>🏠</div><div class=g-label>Orphelinat AFPD</div></div>'" />
+      </div>
+      <div class="col-md-4 col-6 gallery-item">
+        <img src="1775536264715.jpg" alt="Enfants AFPD Bukavu" class="gallery-img" onclick="openLightbox(this.src)" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder><div class=g-icon>👦</div><div class=g-label>Enfants AFPD</div></div>'" />
+      </div>
+      <div class="col-md-4 col-6 gallery-item">
+        <img src="1775536326851.jpg" alt="Vie quotidienne AFPD Bukavu" class="gallery-img" onclick="openLightbox(this.src)" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder><div class=g-icon>🙌</div><div class=g-label>Vie quotidienne AFPD</div></div>'" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONS -->
+<section class="section-pad don-section" id="dons">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 style="font-size:2rem;font-weight:800;color:white"><span class="d-lang fr">💛 Votre Don Sauve une Vie</span><span class="d-lang en" style="display:none">💛 Your Donation Saves a Life</span></h2>
+      <div class="divider"></div>
+      <button class="btn-audio" style="border-color:white;color:white" onclick="speakText(this,'dons-text-fr')"><i class="fas fa-volume-up"></i> <span class="d-lang fr">Écouter</span><span class="d-lang en" style="display:none">Listen</span></button>
+      <span id="dons-text-fr" style="display:none">100 pourcent des dons internationaux servent à acheter de la nourriture et payer les frais scolaires. Avec 10 dollars vous nourrissez un enfant une semaine. Avec 50 dollars vous payez un mois de scolarité.</span>
+      <span id="dons-text-en" style="display:none">100 percent of international donations are used to buy food and pay school fees. With 10 dollars you feed a child for a week. With 50 dollars you pay one month of school fees.</span>
+    </div>
+    <div class="row g-4 mb-5">
+      <div class="col-md-3 col-6"><div class="don-card"><div class="don-amount">$10</div><div class="don-desc mt-2"><span class="d-lang fr">🍽️ Nourrit 1 enfant 1 semaine</span><span class="d-lang en" style="display:none">🍽️ Feeds 1 child for 1 week</span></div></div></div>
+      <div class="col-md-3 col-6"><div class="don-card"><div class="don-amount">$50</div><div class="don-desc mt-2"><span class="d-lang fr">📚 1 mois de scolarité</span><span class="d-lang en" style="display:none">📚 1 month of school fees</span></div></div></div>
+      <div class="col-md-3 col-6"><div class="don-card"><div class="don-amount">$100</div><div class="don-desc mt-2"><span class="d-lang fr">💊 Médicaments 1 mois</span><span class="d-lang en" style="display:none">💊 Medicines for 1 month</span></div></div></div>
+      <div class="col-md-3 col-6"><div class="don-card"><div class="don-amount">$500</div><div class="don-desc mt-2"><span class="d-lang fr">🏠 Soutient l'orphelinat 1 mois</span><span class="d-lang en" style="display:none">🏠 Supports orphanage 1 month</span></div></div></div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="payment-box">
+          <h4 class="text-white fw-bold mb-4 text-center"><span class="d-lang fr">📱 Comment Envoyer votre Don</span><span class="d-lang en" style="display:none">📱 How to Send Your Donation</span></h4>
+          <div class="payment-method">
+            <span class="payment-icon">🌍</span>
+            <div class="flex-grow-1">
+              <div class="fw-bold text-white">WorldRemit <span class="payment-badge d-lang fr">Recommandé Canada</span><span class="payment-badge d-lang en" style="display:none">Recommended Canada</span></div>
+              <div style="color:#f6ad55;font-size:1.1rem;font-weight:700">+243 998 440 006</div>
+              <small style="opacity:0.8">Airtel Money · Sifa Matchara Immaculée</small><br/>
+              <a href="https://www.worldremit.com/en/congo-drc/mobile-money" target="_blank" class="btn btn-sm mt-1" style="background:#f6ad55;color:#1a1a2e;border-radius:20px;font-weight:700;font-size:0.78rem"><span class="d-lang fr">Envoyer via WorldRemit →</span><span class="d-lang en" style="display:none">Send via WorldRemit →</span></a>
+            </div>
+          </div>
+          <div class="payment-method">
+            <span class="payment-icon">📲</span>
+            <div class="flex-grow-1">
+              <div class="fw-bold text-white">TapTap Send <span class="payment-badge d-lang fr">Sans frais Canada</span><span class="payment-badge d-lang en" style="display:none">No fees Canada</span></div>
+              <div style="color:#f6ad55;font-size:1.1rem;font-weight:700">+243 998 440 006</div>
+              <small style="opacity:0.8">Airtel Money · Sifa Matchara Immaculée</small><br/>
+              <a href="https://www.taptapsend.com/" target="_blank" class="btn btn-sm mt-1" style="background:white;color:#1a1a2e;border-radius:20px;font-weight:700;font-size:0.78rem"><span class="d-lang fr">Envoyer via TapTap →</span><span class="d-lang en" style="display:none">Send via TapTap →</span></a>
+            </div>
+          </div>
+          <div class="payment-method">
+            <span class="payment-icon">📱</span>
+            <div><div class="fw-bold text-white">Airtel Money</div><div style="color:#f6ad55;font-size:1.1rem;font-weight:700">+243 998 440 006</div><small style="opacity:0.8">Sifa Matchara Immaculée</small></div>
+          </div>
+          <div class="payment-method">
+            <span class="payment-icon">💚</span>
+            <div><div class="fw-bold text-white">M-Pesa</div><div style="color:#f6ad55;font-size:1.1rem;font-weight:700">+243 825 831 628</div><small style="opacity:0.8">Sifa Matchara Immaculée</small></div>
+          </div>
+          <div class="payment-method">
+            <span class="payment-icon">💬</span>
+            <div><div class="fw-bold text-white">WhatsApp</div><div style="opacity:0.9"><span class="d-lang fr">Pour toute question sur les dons</span><span class="d-lang en" style="display:none">For any donation question</span></div><a href="https://wa.me/243998440006" target="_blank" class="btn btn-sm mt-2" style="background:#25d366;color:white;border-radius:20px"><i class="fab fa-whatsapp me-1"></i>WhatsApp</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGE -->
+<section class="temoignage-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-white" style="font-size:2rem"><span class="d-lang fr">Un Témoin Oculaire Témoigne</span><span class="d-lang en" style="display:none">An Eyewitness Testifies</span></h2>
+      <div class="divider"></div>
+      <p style="color:rgba(255,255,255,0.75)"><span class="d-lang fr">Voici le témoignage de quelqu'un qui a été sur place. D'autres suivront.</span><span class="d-lang en" style="display:none">Here is the testimony of someone who was there. More will follow.</span></p>
+    </div>
+    <div class="temoignage-principal">
+      <p class="d-lang fr">"En novembre 2024, j'ai passé un mois à Bukavu auprès de l'AFPD. J'ai vu de mes propres yeux ces enfants orphelins pris en charge avec amour par Sifa Matchara Immaculée. Quelques mois plus tard, la guerre entre le M23 et les forces armées gouvernementales congolaises (FARDC) a éclaté en février 2025 — et Sifa est restée, refusant d'abandonner ces enfants malgré tout. Je témoigne personnellement de l'authenticité et du dévouement extraordinaire de cette organisation."</p>
+      <p class="d-lang en" style="display:none">"In November 2024, I spent one month in Bukavu with AFPD. I saw with my own eyes these orphaned children cared for with love by Sifa Matchara Immaculée. Months later, the war between M23 rebels and the Congolese government armed forces (FARDC) broke out in February 2025 — and Sifa stayed, refusing to abandon these children no matter what. I personally testify to the authenticity and extraordinary dedication of this organization."</p>
+      <div class="auteur">— Joule Musuwa, <span class="d-lang fr">Éducateur bilingue</span><span class="d-lang en" style="display:none">Bilingual Educator</span>, Saint-Georges de Beauce, Canada 🇨🇦 <span class="auteur-badge d-lang fr">Témoin direct</span><span class="auteur-badge d-lang en" style="display:none">Direct witness</span></div>
+    </div>
+    <div class="temoignage-invite">
+      <div style="font-size:2.5rem;margin-bottom:12px">✍️</div>
+      <h4 class="text-white fw-bold mb-2"><span class="d-lang fr">Votre témoignage ici</span><span class="d-lang en" style="display:none">Your testimony here</span></h4>
+      <p style="color:rgba(255,255,255,0.75);font-size:0.88rem;margin-bottom:16px"><span class="d-lang fr">Devenez parrain et partagez votre expérience. Votre témoignage encouragera d'autres à aider ces 105 enfants.</span><span class="d-lang en" style="display:none">Become a sponsor and share your experience. Your testimony will encourage others to help these 105 children.</span></p>
+      <a href="parrainage.html" class="btn-temoigner"><span class="d-lang fr">Je commence à parrainer →</span><span class="d-lang en" style="display:none">I start sponsoring →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- BENEVOLE -->
+<section class="section-pad benevole-section" id="benevole">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title"><span class="d-lang fr">🤝 Devenez Bénévole</span><span class="d-lang en" style="display:none">🤝 Become a Volunteer</span></h2>
+      <div class="divider"></div>
+      <button class="btn-audio mb-3" onclick="speakText(this,'benevole-text-fr')"><i class="fas fa-volume-up"></i> <span class="d-lang fr">Écouter</span><span class="d-lang en" style="display:none">Listen</span></button>
+      <span id="benevole-text-fr" style="display:none">Nous avons besoin de vos compétences pour rendre ces enfants autonomes. Que vous soyez enseignant, médecin, informaticien ou artiste, contactez-nous pour organiser des sessions de mentorat même à distance.</span>
+      <span id="benevole-text-en" style="display:none">We need your skills to make these children self-sufficient. Whether you are a teacher, doctor, IT expert or artist, contact us to organize mentoring sessions even remotely.</span>
+    </div>
+    <div class="row g-4 mb-5">
+      <div class="col-md-4"><div class="card-afpd p-4 text-center"><div style="font-size:2.5rem">💻</div><h5 class="fw-bold mt-3"><span class="d-lang fr">Bénévolat Virtuel</span><span class="d-lang en" style="display:none">Virtual Volunteering</span></h5><p class="text-muted"><span class="d-lang fr">Enseignez à distance via WhatsApp ou vidéo.</span><span class="d-lang en" style="display:none">Teach remotely via WhatsApp or video.</span></p></div></div>
+      <div class="col-md-4"><div class="card-afpd p-4 text-center"><div style="font-size:2.5rem">🏫</div><h5 class="fw-bold mt-3"><span class="d-lang fr">Bénévolat Physique</span><span class="d-lang en" style="display:none">In-Person Volunteering</span></h5><p class="text-muted"><span class="d-lang fr">Venez à Ibanda, Bukavu pour enseigner un métier.</span><span class="d-lang en" style="display:none">Come to Ibanda, Bukavu to teach a trade.</span></p></div></div>
+      <div class="col-md-4"><div class="card-afpd p-4 text-center"><div style="font-size:2.5rem">🌍</div><h5 class="fw-bold mt-3"><span class="d-lang fr">Partenariat ONG</span><span class="d-lang en" style="display:none">NGO Partnership</span></h5><p class="text-muted"><span class="d-lang fr">Votre organisation peut devenir partenaire officiel de l'AFPD.</span><span class="d-lang en" style="display:none">Your organization can become an official AFPD partner.</span></p></div></div>
+    </div>
+    <div class="text-center">
+      <div class="mb-3">
+        <span class="skill-tag">👨‍🏫 <span class="d-lang fr">Enseignant</span><span class="d-lang en" style="display:none">Teacher</span></span>
+        <span class="skill-tag">💻 IT</span>
+        <span class="skill-tag">🎨 <span class="d-lang fr">Artiste</span><span class="d-lang en" style="display:none">Artist</span></span>
+        <span class="skill-tag">🔧 <span class="d-lang fr">Artisan</span><span class="d-lang en" style="display:none">Craftsman</span></span>
+        <span class="skill-tag">🩺 <span class="d-lang fr">Médecin</span><span class="d-lang en" style="display:none">Doctor</span></span>
+        <span class="skill-tag">📷 <span class="d-lang fr">Photographe</span><span class="d-lang en" style="display:none">Photographer</span></span>
+      </div>
+      <a href="https://wa.me/243998440006?text=Bonjour%2C%20je%20souhaite%20devenir%20b%C3%A9n%C3%A9vole%20AFPD%20Bukavu" target="_blank" class="btn-hero-primary" style="background:var(--primary);color:white"><i class="fas fa-hands-helping me-2"></i><span class="d-lang fr">Je propose mes services</span><span class="d-lang en" style="display:none">I offer my services</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPARENCE -->
+<section class="section-pad" id="transparence" style="background:var(--light-bg)">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title"><span class="d-lang fr">🔍 Transparence & Redevabilité</span><span class="d-lang en" style="display:none">🔍 Transparency & Accountability</span></h2>
+      <div class="divider"></div>
+      <button class="btn-audio mb-3" onclick="speakText(this,'transp-text-fr')"><i class="fas fa-volume-up"></i> <span class="d-lang fr">Écouter</span><span class="d-lang en" style="display:none">Listen</span></button>
+      <span id="transp-text-fr" style="display:none">100 pourcent des dons internationaux servent à l'achat de vivres et au paiement des frais scolaires. Nous publions régulièrement des photos de nos distributions.</span>
+      <span id="transp-text-en" style="display:none">100 percent of international donations are used to purchase food and pay school fees. We regularly publish photos of our distributions.</span>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4"><div class="transparence-item h-100"><div style="font-size:2rem;color:var(--primary)">✅</div><h5 class="fw-bold mt-3"><span class="d-lang fr">Notre Engagement</span><span class="d-lang en" style="display:none">Our Commitment</span></h5><p class="text-muted"><span class="d-lang fr">100% des dons servent directement à l'achat de vivres et aux frais scolaires.</span><span class="d-lang en" style="display:none">100% of donations go directly to food and school fees.</span></p></div></div>
+      <div class="col-md-4"><div class="transparence-item h-100"><div style="font-size:2rem;color:var(--primary)">📸</div><h5 class="fw-bold mt-3"><span class="d-lang fr">Preuves d'Impact</span><span class="d-lang en" style="display:none">Proof of Impact</span></h5><p class="text-muted"><span class="d-lang fr">Nous publions des photos de nos distributions pour montrer que l'aide arrive à destination.</span><span class="d-lang en" style="display:none">We publish photos of our distributions to show aid reaches its destination.</span></p></div></div>
+      <div class="col-md-4"><div class="transparence-item h-100"><div style="font-size:2rem;color:var(--primary)">📋</div><h5 class="fw-bold mt-3"><span class="d-lang fr">Contact Audit</span><span class="d-lang en" style="display:none">Audit Contact</span></h5><p class="text-muted"><span class="d-lang fr">Pour toute question sur l'utilisation des fonds, contactez Sifa directement.</span><span class="d-lang en" style="display:none">For any questions about fund usage, contact Sifa directly.</span></p><a href="https://wa.me/243998440006" target="_blank" class="btn btn-sm mt-2" style="background:var(--primary);color:white;border-radius:20px"><i class="fab fa-whatsapp me-1"></i>WhatsApp</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section-pad contact-section" id="contact">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-white" style="font-size:2rem"><span class="d-lang fr">📬 Contactez-Nous</span><span class="d-lang en" style="display:none">📬 Contact Us</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="contact-item"><span class="contact-icon"><i class="fas fa-user"></i></span><div><div class="fw-bold text-white"><span class="d-lang fr">Responsable</span><span class="d-lang en" style="display:none">Director</span></div><div style="color:#ccc">Sifa Matchara Immaculée</div></div></div>
+        <div class="contact-item"><span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span><div><div class="fw-bold text-white"><span class="d-lang fr">Adresse</span><span class="d-lang en" style="display:none">Address</span></div><div style="color:#ccc">Commune d'Ibanda, Bukavu, Sud-Kivu, RDC</div></div></div>
+        <div class="contact-item"><span class="contact-icon"><i class="fas fa-phone"></i></span><div><div class="fw-bold text-white">WhatsApp / Airtel Money</div><div style="color:#f6ad55;font-size:1.1rem;font-weight:700">+243 998 440 006</div></div></div>
+        <div class="mt-4 d-flex gap-3 flex-wrap">
+          <a href="https://wa.me/243998440006" target="_blank" class="btn btn-lg" style="background:#25d366;color:white;border-radius:30px;font-weight:700"><i class="fab fa-whatsapp me-2"></i>WhatsApp</a>
+          <a href="#dons" class="btn btn-lg" style="background:#f6ad55;color:#1a1a2e;border-radius:30px;font-weight:700">💛 <span class="d-lang fr">Faire un Don</span><span class="d-lang en" style="display:none">Make a Donation</span></a>
+          <a href="parrainage.html" class="btn btn-lg" style="background:white;color:#1a1a2e;border-radius:30px;font-weight:700">👶 <span class="d-lang fr">Parrainer</span><span class="d-lang en" style="display:none">Sponsor</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="mb-2"><strong style="color:#f6ad55">AFPD BUKAVU</strong> — Action de Femmes pour la Paix et le Développement</div>
+    <div>© 2026 AFPD Bukavu · Commune d'Ibanda, Bukavu, Sud-Kivu, RDC</div>
+    <div class="mt-2"><small><span class="d-lang fr">Site réalisé avec ❤️ pour les enfants de Bukavu</span><span class="d-lang en" style="display:none">Website made with ❤️ for the children of Bukavu</span></small></div>
+  </div>
 </footer>
 
+<a href="https://wa.me/243998440006" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp fa-lg"></i><span class="d-lang fr">WhatsApp AFPD</span><span class="d-lang en" style="display:none">WhatsApp AFPD</span></a>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="Photo AFPD Bukavu" />
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  let currentLang='fr';
+  function toggleLang(){
+    currentLang=currentLang==='fr'?'en':'fr';
+    document.getElementById('langBtn').textContent=currentLang==='fr'?'EN':'FR';
+    document.querySelectorAll('.d-lang.fr').forEach(el=>el.style.display=currentLang==='fr'?'':'none');
+    document.querySelectorAll('.d-lang.en').forEach(el=>el.style.display=currentLang==='en'?'':'none');
+    document.getElementById('html-root').lang=currentLang;
+    window.speechSynthesis.cancel();
+  }
+  let currentBtn=null;
+  function speakText(btn,textId){
+    window.speechSynthesis.cancel();
+    if(currentBtn&&currentBtn!==btn)currentBtn.classList.remove('playing');
+    const targetId=currentLang==='en'?textId.replace('-fr','-en'):textId.replace('-en','-fr');
+    const el=document.getElementById(targetId)||document.getElementById(textId);
+    if(!el)return;
+    const text=el.textContent.trim();
+    if(!text)return;
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=currentLang==='en'?'en-US':'fr-FR';
+    u.rate=0.92;
+    u.onstart=()=>{btn.classList.add('playing');currentBtn=btn;};
+    u.onend=()=>{btn.classList.remove('playing');currentBtn=null;};
+    u.onerror=()=>{btn.classList.remove('playing');currentBtn=null;};
+    window.speechSynthesis.speak(u);
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const t=document.querySelector(a.getAttribute('href'));
+      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+    });
+  });
+</script>
 </body>
 </html>
