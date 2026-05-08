@@ -68,11 +68,11 @@
     .enfants-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
     .enfant-card { background: var(--bg); border-radius: 16px; overflow: hidden; box-shadow: 0 3px 15px rgba(0,0,0,0.08); transition: transform 0.2s; }
     .enfant-card:hover { transform: translateY(-4px); }
-    .enfant-photo { width: 100%; height: 200px; object-fit: cover; }
-    .enfant-photo-placeholder { width: 100%; height: 200px; background: linear-gradient(135deg, #e8f5e9, #c8e6c9); display: flex; align-items: center; justify-content: center; font-size: 4rem; }
+    .enfant-photo { width: 100%; height: 280px; object-fit: cover; object-position: top; }
+    .enfant-photo-placeholder { width: 100%; height: 280px; background: linear-gradient(135deg, #e8f5e9, #c8e6c9); display: flex; align-items: center; justify-content: center; font-size: 4rem; }
     .enfant-info { padding: 15px; }
     .enfant-nom { font-weight: 700; font-size: 1rem; color: var(--vert); }
-    .enfant-age { font-size: 0.85rem; color: #777; margin: 3px 0; }
+    .enfant-genre { font-size: 0.85rem; color: #777; margin: 3px 0; }
     .enfant-reve { font-size: 0.85rem; color: #444; font-style: italic; margin: 8px 0; }
     .badge-statut { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
     .badge-disponible { background: #e8f5e9; color: var(--vert); }
@@ -224,8 +224,8 @@
 
 <!-- URGENCE -->
 <div class="urgence-bar">
-  <span class="d-lang fr"><i class="fas fa-exclamation-triangle"></i> URGENCE : Suite à la guerre entre le M23 et les FARDC, 105 enfants ont besoin de votre aide immédiate !</span>
-  <span class="d-lang en" style="display:none"><i class="fas fa-exclamation-triangle"></i> EMERGENCY: Following the war between M23 and the FARDC, 105 children need your immediate help!</span>
+  <span class="d-lang fr"><i class="fas fa-exclamation-triangle"></i> Suite à la situation sécuritaire qui prévaut à l'est du Congo, nous avons besoin urgent de soutien pour ces 105 enfants !</span>
+  <span class="d-lang en" style="display:none"><i class="fas fa-exclamation-triangle"></i> Due to the security situation prevailing in eastern Congo, we urgently need support for these 105 children!</span>
 </div>
 
 <!-- HERO -->
@@ -413,8 +413,8 @@
       <div class="enfant-photo-placeholder" style="display:none">👦</div>
       <div class="enfant-info">
         <div class="enfant-nom">Shalom</div>
-        <div class="enfant-age d-lang fr">👦 Garçon | AFPD Bukavu</div>
-        <div class="enfant-age d-lang en" style="display:none">👦 Boy | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang fr">👦 Garçon | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang en" style="display:none">👦 Boy | AFPD Bukavu</div>
         <div class="enfant-reve d-lang fr">"Je veux grandir et aider ma communauté."</div>
         <div class="enfant-reve d-lang en" style="display:none">"I want to grow up and help my community."</div>
         <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
@@ -429,8 +429,8 @@
       <div class="enfant-photo-placeholder" style="display:none">👧</div>
       <div class="enfant-info">
         <div class="enfant-nom">Joëlle</div>
-        <div class="enfant-age d-lang fr">👧 Fille | AFPD Bukavu</div>
-        <div class="enfant-age d-lang en" style="display:none">👧 Girl | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang fr">👧 Fille | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang en" style="display:none">👧 Girl | AFPD Bukavu</div>
         <div class="enfant-reve d-lang fr">"Je rêve d'être enseignante pour apprendre aux autres."</div>
         <div class="enfant-reve d-lang en" style="display:none">"I dream of being a teacher to help others learn."</div>
         <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
@@ -445,8 +445,8 @@
       <div class="enfant-photo-placeholder" style="display:none">👦</div>
       <div class="enfant-info">
         <div class="enfant-nom">Destin</div>
-        <div class="enfant-age d-lang fr">👦 Garçon | AFPD Bukavu</div>
-        <div class="enfant-age d-lang en" style="display:none">👦 Boy | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang fr">👦 Garçon | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang en" style="display:none">👦 Boy | AFPD Bukavu</div>
         <div class="enfant-reve d-lang fr">"Mon rêve est de devenir ingénieur."</div>
         <div class="enfant-reve d-lang en" style="display:none">"My dream is to become an engineer."</div>
         <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
@@ -461,8 +461,8 @@
       <div class="enfant-photo-placeholder" style="display:none">👧</div>
       <div class="enfant-info">
         <div class="enfant-nom">Élisabeth</div>
-        <div class="enfant-age d-lang fr">👧 Fille | AFPD Bukavu</div>
-        <div class="enfant-age d-lang en" style="display:none">👧 Girl | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang fr">👧 Fille | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang en" style="display:none">👧 Girl | AFPD Bukavu</div>
         <div class="enfant-reve d-lang fr">"Je veux être médecin pour soigner les enfants."</div>
         <div class="enfant-reve d-lang en" style="display:none">"I want to be a doctor to heal children."</div>
         <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
@@ -477,13 +477,13 @@
       <div class="enfant-photo-placeholder" style="display:none">👧</div>
       <div class="enfant-info">
         <div class="enfant-nom">Grâce</div>
-        <div class="enfant-age d-lang fr">👧 Fille | AFPD Bukavu</div>
-        <div class="enfant-age d-lang en" style="display:none">👧 Girl | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang fr">👦 Garçon | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang en" style="display:none">👦 Boy | AFPD Bukavu</div>
         <div class="enfant-reve d-lang fr">"Je rêve d'apporter de la joie autour de moi."</div>
         <div class="enfant-reve d-lang en" style="display:none">"I dream of bringing joy to those around me."</div>
         <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
         <span class="badge-statut badge-disponible d-lang en" style="display:none">✅ Available</span>
-        <button class="btn-parrainer-enfant" onclick="ouvrirModalEnfant('Grâce','Fille','Fille')"><span class="d-lang fr">Parrainer Grâce</span><span class="d-lang en" style="display:none">Sponsor Grâce</span></button>
+        <button class="btn-parrainer-enfant" onclick="ouvrirModalEnfant('Grâce','Garçon','Garçon')"><span class="d-lang fr">Parrainer Grâce</span><span class="d-lang en" style="display:none">Sponsor Grâce</span></button>
       </div>
     </div>
 
@@ -493,8 +493,8 @@
       <div class="enfant-photo-placeholder" style="display:none">👦</div>
       <div class="enfant-info">
         <div class="enfant-nom">Sagesse</div>
-        <div class="enfant-age d-lang fr">👦 Garçon | AFPD Bukavu</div>
-        <div class="enfant-age d-lang en" style="display:none">👦 Boy | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang fr">👦 Garçon | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang en" style="display:none">👦 Boy | AFPD Bukavu</div>
         <div class="enfant-reve d-lang fr">"Je veux être fort et protéger ma famille."</div>
         <div class="enfant-reve d-lang en" style="display:none">"I want to be strong and protect my family."</div>
         <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
@@ -509,8 +509,8 @@
       <div class="enfant-photo-placeholder" style="display:none">👧</div>
       <div class="enfant-info">
         <div class="enfant-nom">Rosine</div>
-        <div class="enfant-age d-lang fr">👧 Fille | AFPD Bukavu</div>
-        <div class="enfant-age d-lang en" style="display:none">👧 Girl | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang fr">👧 Fille | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang en" style="display:none">👧 Girl | AFPD Bukavu</div>
         <div class="enfant-reve d-lang fr">"Je veux étudier et rendre ma famille fière."</div>
         <div class="enfant-reve d-lang en" style="display:none">"I want to study and make my family proud."</div>
         <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
@@ -525,8 +525,8 @@
       <div class="enfant-photo-placeholder" style="display:none">👦</div>
       <div class="enfant-info">
         <div class="enfant-nom">Junior</div>
-        <div class="enfant-age d-lang fr">👦 Garçon | AFPD Bukavu</div>
-        <div class="enfant-age d-lang en" style="display:none">👦 Boy | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang fr">👦 Garçon | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang en" style="display:none">👦 Boy | AFPD Bukavu</div>
         <div class="enfant-reve d-lang fr">"Je veux être footballeur et rendre fière ma famille."</div>
         <div class="enfant-reve d-lang en" style="display:none">"I want to be a footballer and make my family proud."</div>
         <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
@@ -541,8 +541,8 @@
       <div class="enfant-photo-placeholder" style="display:none">👧</div>
       <div class="enfant-info">
         <div class="enfant-nom">Immaculée</div>
-        <div class="enfant-age d-lang fr">👧 Fille | AFPD Bukavu</div>
-        <div class="enfant-age d-lang en" style="display:none">👧 Girl | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang fr">👧 Fille | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang en" style="display:none">👧 Girl | AFPD Bukavu</div>
         <div class="enfant-reve d-lang fr">"Je veux être infirmière pour aider les malades."</div>
         <div class="enfant-reve d-lang en" style="display:none">"I want to be a nurse to help sick people."</div>
         <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
@@ -557,8 +557,8 @@
       <div class="enfant-photo-placeholder" style="display:none">👦</div>
       <div class="enfant-info">
         <div class="enfant-nom">Ekima</div>
-        <div class="enfant-age d-lang fr">👦 Garçon | AFPD Bukavu</div>
-        <div class="enfant-age d-lang en" style="display:none">👦 Boy | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang fr">👦 Garçon | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang en" style="display:none">👦 Boy | AFPD Bukavu</div>
         <div class="enfant-reve d-lang fr">"Je veux devenir quelqu'un de grand malgré tout."</div>
         <div class="enfant-reve d-lang en" style="display:none">"I want to become someone great despite everything."</div>
         <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
@@ -573,8 +573,8 @@
       <div class="enfant-photo-placeholder" style="display:none">👧</div>
       <div class="enfant-info">
         <div class="enfant-nom">Rosette</div>
-        <div class="enfant-age d-lang fr">👧 Fille | AFPD Bukavu</div>
-        <div class="enfant-age d-lang en" style="display:none">👧 Girl | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang fr">👧 Fille | AFPD Bukavu</div>
+        <div class="enfant-genre d-lang en" style="display:none">👧 Girl | AFPD Bukavu</div>
         <div class="enfant-reve d-lang fr">"Je rêve d'un avenir meilleur pour ma famille."</div>
         <div class="enfant-reve d-lang en" style="display:none">"I dream of a better future for my family."</div>
         <span class="badge-statut badge-disponible d-lang fr">✅ Disponible</span>
@@ -619,10 +619,10 @@
     <!-- Témoignage de Joule — VRAI -->
     <div class="temoignage-principal">
       <p class="d-lang fr">
-        "En novembre 2024, j'ai passé un mois à Bukavu auprès de l'AFPD. J'ai vu de mes propres yeux ces enfants orphelins pris en charge avec amour par Sifa Matchara Immaculée. Quelques mois plus tard, la guerre entre le M23 et les forces armées gouvernementales congolaises (FARDC) a éclaté en février 2025 — et Sifa est restée, refusant d'abandonner ces enfants malgré tout. Je témoigne personnellement de l'authenticité et du dévouement extraordinaire de cette organisation."
+        "En novembre 2024, j'ai passé un mois à Bukavu auprès de l'AFPD. J'ai vu de mes propres yeux ces enfants orphelins pris en charge avec amour par Sifa Matchara Immaculée. Quelques mois plus tard, suite à la situation sécuritaire qui a prévalu à l'est du Congo en 2025, Sifa est restée, refusant d'abandonner ces enfants malgré tout. Je témoigne personnellement de l'authenticité et du dévouement extraordinaire de cette organisation."
       </p>
       <p class="d-lang en" style="display:none">
-        "In November 2024, I spent one month in Bukavu with AFPD. I saw with my own eyes these orphaned children cared for with love by Sifa Matchara Immaculée. Months later, the war between M23 rebels and the Congolese government armed forces (FARDC) broke out in February 2025 — and Sifa stayed, refusing to abandon these children no matter what. I personally testify to the authenticity and extraordinary dedication of this organization."
+        "In November 2024, I spent one month in Bukavu with AFPD. I saw with my own eyes these orphaned children cared for with love by Sifa Matchara Immaculée. Months later, following the security situation that prevailed in eastern Congo in 2025, Sifa stayed, refusing to abandon these children no matter what. I personally testify to the authenticity and extraordinary dedication of this organization."
       </p>
       <div class="auteur">
         <span>— Joule Musuwa, Éducateur bilingue, Saint-Georges de Beauce, Canada 🇨🇦</span>
@@ -711,13 +711,17 @@
         <label class="d-lang en" style="display:none">👶 Child to sponsor (optional)</label>
         <select id="enfant">
           <option value="">-- Pas de préférence --</option>
-          <option value="espoir">Espoir M. (5 ans, Garçon)</option>
-          <option value="grace">Grâce K. (8 ans, Fille)</option>
-          <option value="amani">Amani B. (10 ans, Garçon)</option>
-          <option value="joie">Joie N. (7 ans, Fille)</option>
-          <option value="lumiere">Lumière T. (12 ans, Fille)</option>
-          <option value="victoire">Victoire M. (9 ans, Fille)</option>
-          <option value="fidele">Fidèle K. (6 ans, Garçon)</option>
+          <option value="shalom">Shalom (Garçon)</option>
+          <option value="joelle">Joëlle (Fille)</option>
+          <option value="destin">Destin (Garçon)</option>
+          <option value="elisabeth">Élisabeth (Fille)</option>
+          <option value="grace">Grâce (Garçon)</option>
+          <option value="sagesse">Sagesse (Garçon)</option>
+          <option value="rosine">Rosine (Fille)</option>
+          <option value="junior">Junior (Garçon)</option>
+          <option value="immaculee">Immaculée (Fille)</option>
+          <option value="ekima">Ekima (Garçon)</option>
+          <option value="rosette">Rosette (Fille)</option>
           <option value="autre">Un autre enfant</option>
         </select>
       </div>
@@ -793,8 +797,8 @@
     if (!window.speechSynthesis) return;
     window.speechSynthesis.cancel();
     const textes = {
-      fr: "Bienvenue sur la page de parrainage de l'orphelinat AFPD Bukavu. Nous accueillons 105 enfants orphelins et vulnérables à Ibanda, Bukavu, en République Démocratique du Congo. Suite à la guerre entre le M23 et les forces armées gouvernementales congolaises en 2025, nous faisons face à une urgence alimentaire grave. Votre parrainage mensuel, même de 10 dollars, peut nourrir, soigner et scolariser un enfant. Merci de nous aider.",
-      en: "Welcome to the AFPD Bukavu orphanage sponsorship page. We care for 105 orphaned and vulnerable children in Ibanda, Bukavu, Democratic Republic of Congo. Following the war between M23 rebels and the Congolese government armed forces in 2025, we face a serious food emergency. Your monthly sponsorship, even 10 dollars, can feed, heal and educate a child. Thank you for helping us."
+      fr: "Bienvenue sur la page de parrainage de l'orphelinat AFPD Bukavu. Nous accueillons 105 enfants orphelins et vulnérables à Ibanda, Bukavu, en République Démocratique du Congo. Suite à la situation sécuritaire qui prévaut à l'est du Congo, nous faisons face à une urgence alimentaire grave. Votre parrainage mensuel, même de 10 dollars, peut nourrir, soigner et scolariser un enfant. Merci de nous aider.",
+      en: "Welcome to the AFPD Bukavu orphanage sponsorship page. We care for 105 orphaned and vulnerable children in Ibanda, Bukavu, Democratic Republic of Congo. Due to the security situation prevailing in eastern Congo, we face a serious food emergency. Your monthly sponsorship, even 10 dollars, can feed, heal and educate a child. Thank you for helping us."
     };
     const msg = new SpeechSynthesisUtterance(textes[langActuelle]);
     msg.lang = langActuelle === 'fr' ? 'fr-FR' : 'en-US';
